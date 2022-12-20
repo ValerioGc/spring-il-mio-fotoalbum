@@ -1,6 +1,9 @@
 package org.spring.foto.pojo;
 
 import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -39,11 +42,15 @@ public class Photo {
 	@NotNull(message = "Il nome dell'ingrediente non deve essere vuoto")
 	private boolean visible;
 	
-	
-	private String tag;
+
 	
 	@ManyToMany
+	@JsonIgnore
 	private List<Category> categories; 
+	
+	@ManyToMany
+	@JsonIgnore
+	private Set<Tag> tags; 
 	
 	public Photo() { }
 	public Photo(String title, String description, String url, boolean visible) {
@@ -52,6 +59,7 @@ public class Photo {
 		setUrl(url);
 		setVisible(visible);
 	}
+//  With categories
 	public Photo(String title, String description, String url, 
 					boolean visible, List<Category> categories) {
 		
@@ -60,6 +68,26 @@ public class Photo {
 		setUrl(url);
 		setVisible(visible);
 		setCategories(categories);
+	}
+//  With tags
+	public Photo(String title, String description, String url, 
+			boolean visible, Set<Tag> tags) {
+		
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
+		setVisible(visible);
+		setCategories(categories);
+	}
+//  With Categories and tags
+	public Photo(String title, String description, String url, 
+			boolean visible, List<Category> categories, Set<Tag> tags) {
+
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
+		setVisible(visible);
+		setTags(tags);
 	}
 	
 	
@@ -92,14 +120,6 @@ public class Photo {
 		this.url = url;
 	}
 	
-//  Tags
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
 //  Visibility
 	public boolean isVisible() {
 		return visible;
@@ -107,7 +127,9 @@ public class Photo {
 	public void setVisible(boolean visible) {
 		this.visible = visible;
 	}
-	
+
+	// ------------------ Relations ------------------ // 
+
 //  Categories
 	public List<Category> getCategories() {
 		return categories;
@@ -115,12 +137,23 @@ public class Photo {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
-	
 
+//  Tags
+	public Set<Tag> getTags() {
+		return tags;
+	}
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+	
+	
 	@Override
 	public String toString() {
-		return "Nome foto: " + getTitle()
-				+ "Id: " + getId()
-				+ "Url: " + getUrl();
+		return "\nNome foto: " + getTitle()
+				+ "\nId: " + getId()
+				+ "\nVisibile: " + isVisible()
+				+ "\nDescrizione: " + getDescription()
+				+ "\nUrl: " + getUrl()
+				+ "\n---------------------------------------";
 	}
 }

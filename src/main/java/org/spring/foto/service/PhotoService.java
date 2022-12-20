@@ -42,11 +42,11 @@ public class PhotoService {
 	}
 	
 // Find by name
-	public List<Photo> findByName(String name) {
-		return photoRepo.findByNameContainingIgnoreCase(name);
+	public List<Photo> findByTitle(String title) {
+		return photoRepo.findByTitleContainingIgnoreCase(title);
 	}
 	
-// Find ingredients
+//  Find Categories
 	@Transactional
 	public List<Photo> findAllPhotoCategory() {
 		
@@ -54,6 +54,19 @@ public class PhotoService {
 		
 		for (Photo photo : photos) {
 			Hibernate.initialize(photo.getCategories());
+		}
+		
+		return photos;
+	}
+	
+// 	Find Tags
+	@Transactional
+	public List<Photo> findAllPhotosTags() {
+		
+		List<Photo> photos = photoRepo.findAll();
+		
+		for (Photo photo : photos) {
+			Hibernate.initialize(photo.getTags());
 		}
 		
 		return photos;

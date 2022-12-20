@@ -16,27 +16,27 @@ import jakarta.validation.constraints.NotNull;
 
 @Table
 @Entity
-public class Category {
+public class Tag {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@Column(nullable = false, unique = true)
-	@NotNull(message = "Il nome della categoria non deve essere vuoto")
-	@NotEmpty(message = "Il nome della categoria non deve essere vuoto")
+	@NotNull(message = "Il nome del tag non deve essere vuoto")
+	@NotEmpty(message = "Il nome del tag non deve essere vuoto")
 	private String name;
 	
-	@ManyToMany(mappedBy = "categories")
+	@ManyToMany(mappedBy = "tags")
 	@JsonIgnore
 	private List<Photo> photos;
 
 	
-	public Category() { }
-	public Category(String name) {
+	public Tag() { }
+	public Tag(String name) {
 		setName(name);
 	}
-	public Category(String name, List<Photo> photos) {
+	public Tag(String name, List<Photo> photos) {
 		setName(name);
 		setPhotos(photos);
 	}
@@ -65,7 +65,7 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return "Nome categoria: " + getName()
+		return "Nome tag: " + getName()
 				+ "Foto: " + getPhotos();
 	}
 }
