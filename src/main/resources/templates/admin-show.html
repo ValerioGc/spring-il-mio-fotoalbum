@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<th:block th:replace="fragments :: head('Foto')"></th:block>
+	<th:block th:replace="fragments :: head('Dettagli foto')"></th:block>
 
 	<body>
 		
 		<!-- Header -->
 		<th:block th:replace="fragments :: header()"></th:block>
-	
-	
-		<!-- Main -->
+		
 		<main class="container-fluid">
-			<div class="card w-25 m-auto p-4 my-5" th:each="photo : ${photos}" th:object="${photo}"> 
-				<!-- th:if="${photo.isVisible()}"> --> 
+			<a href="/admin/photo/index">
+				<i class="fa-solid fa-arrow-left"></i>
+				 Torna indietro
+			</a>
+			
+			<div class="card w-25 m-auto p-4 my-5" th:object="${photo}">
 				<ul class="list-unstyled">
 					<li class=" text-center mt-1 mb-3 text-capitalize">
 						<span class="fw-bold">		
@@ -58,12 +60,7 @@
 						<span th:if="${photo.getTags().isEmpty()}">Nessun tag associato</span>
 					</li>
 				</ul>
-				<div class="text-center">
-					<a th:href="@{'/admin/photo/show/{id}' (id=*{id}) }"
-					   class="btn btn-success">
-						Dettagli
-			   		</a>
-					   
+				<div class="text-center">			   
 					<a th:href="@{'/admin/photo/edit/{id}' (id=*{id}) }"
 					   class="btn btn-primary" href="#">
 					   	Modifica
@@ -74,8 +71,6 @@
 						Elimina
 				   	</a>
 				</div>
-				
-				<script type="text/javascript" th:src="@{/js/main.js}"></script>
 			</div>
 		</main>
 	</body>
