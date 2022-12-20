@@ -71,4 +71,23 @@
 	 class="p-4 alert w-50 mx-auto alert-success text-capitalize timed-exit my-1">
 	[[${successMsg}]]
 </div>
+		
+		
+<!--------------------- Form Checkbox ----------------------->		
+<div th:fragment="checkboxForm(obj, name)"class="mt-3">
+	<label class="fw-bold pe-2 d-inline-block">Categorie:</label>
+	<hr/>		
+	
+	<div class="d-flex align-items-center flex-wrap my-2">
+		
+		<span class="w-50 text-center text-capitalize" 
+			  th:each="el : ${obj}">	
+	
+			<input type="checkbox" th:name="${name}" 
+					th:value="${el.id}" 
+					th:field="${obj.el}" />
 				
+			<label class="fw-bold d-inline-block">[[${el.name}]]</label>
+		</span>
+	</div>
+</div>		

@@ -69,16 +69,17 @@ public class AdminPhotoAreaController {
 		model.addAttribute("obj", ph1);
 				
 		List<Category> categories = categoryService.findAll(); 
-		model.addAttribute("category", categories);
+		model.addAttribute("categories", categories);
 		
 		List<Tag> tags = tagService.findAll();
-		model.addAttribute("tags", tags);
+		model.addAttribute("tgs", tags);
 
-		model.addAttribute("routeName", "newPhoto");
+		model.addAttribute("routeName", "create");
 		model.addAttribute("element", "photo");
 		model.addAttribute("type", "Crea");
+		model.addAttribute("action", "store");
 		
-		return "admin-create";
+		return "admin-edit_create";
 	}
 	//  Store
 	@PostMapping("/store")
@@ -108,20 +109,24 @@ public class AdminPhotoAreaController {
 		model.addAttribute("categories", categories);
 		
 		List<Tag> tags = tagService.findAll();
-		model.addAttribute("tags", tags);
+		model.addAttribute("tgs", tags);
 		
 		Optional<Photo> optPhoto = photoService.findPhotoById(id);
 		Photo photo = optPhoto.get();
 		model.addAttribute("obj", photo);
-		
+
 		model.addAttribute("routeName", "edit");
 		model.addAttribute("element", "photo");
+		model.addAttribute("type", "Modifica");
+		model.addAttribute("action", "update");
 		
-		return "admin-edit";
+		return "admin-edit_create";
 	}
 	// Update 
 	@PostMapping("/update")
-	public String updatePhoto(@Valid Photo photo, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String updatePhoto(@Valid Photo photo, 
+								BindingResult bindingResult, 
+								RedirectAttributes redirectAttributes) {
 	
 	// --------------------------------- Errors & Msg --------------------------------------	
 
@@ -133,10 +138,10 @@ public class AdminPhotoAreaController {
 		redirectAttributes.addFlashAttribute("successMsg", "Modifica avvenuta con successo");
 		
 	// -------------------------------------------------------------------------------------	
-		
+
 		photoService.save(photo);
 		
-		return "redirect:/admin/pizza/index";
+		return "redirect:/admin/photo/index";
 	}
 	
 	
