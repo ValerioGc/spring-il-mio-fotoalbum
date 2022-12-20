@@ -2,14 +2,20 @@ package org.spring.foto;
 
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.spring.foto.pojo.Role;
+import org.spring.foto.pojo.User;
 import org.spring.foto.pojo.Category;
 import org.spring.foto.pojo.Photo;
 import org.spring.foto.pojo.Tag;
 import org.spring.foto.service.CategoryService;
 import org.spring.foto.service.PhotoService;
 import org.spring.foto.service.TagService;
+import org.spring.foto.service.UserService;
+import org.spring.foto.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -26,6 +32,13 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 	
 	@Autowired
 	private TagService tagService;
+	
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(SpringIlMioFotoalbumApplication.class, args);
@@ -79,7 +92,29 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		System.out.println(t1);
 		System.out.println(t2);
 		System.out.println(t3);
+		
+		
+		
+		Role admin = new Role("ADMIN");
+		Role user = new Role("USER");
+
+		roleService.save(admin);
+		roleService.save(user);
+		
+		Set<Role> userAdmin = new HashSet<>();		
+		userAdmin.add(user);
+		userAdmin.add(admin);
+
+		User userUser = new User("user", "{noop}pwd", user);
+		User adminUser = new User("admin", "{noop}pwd2", admin);
+		User usAd = new User("userAdmin", "{noop}pwd3", userAdmin);
+	
+		userService.save(userUser);
+		userService.save(adminUser);
+		userService.save(usAd);
+		
+		System.out.println(userUser);
+		System.out.println(adminUser);
+		System.out.println(usAd);
 	}
-	
-	
 }

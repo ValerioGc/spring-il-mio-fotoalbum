@@ -42,12 +42,12 @@ public class Category {
 	}
 
 	
-//  ID
+//  ID --------------------------------------
 	public int getId() {
 		return id;
 	}
 	
-//  Name
+//  Name --------------------------------------
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -55,7 +55,7 @@ public class Category {
 		return name;
 	}
 
-//  Photos
+//  Photos --------------------------------------
 	public List<Photo> getPhotos() {
 		return photos;
 	}

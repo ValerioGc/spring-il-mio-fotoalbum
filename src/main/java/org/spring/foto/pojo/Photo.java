@@ -91,12 +91,12 @@ public class Photo {
 	}
 	
 	
-//  Id	
+//  Id	--------------------------------------
 	public int getId() {
 		return id;
 	}
 
-//  Title	
+//  Title --------------------------------------
 	public String getTitle() {
 		return title;
 	}
@@ -104,7 +104,7 @@ public class Photo {
 		this.title = title;
 	}
 	
-//  Description
+//  Description --------------------------------------
 	public String getDescription() {
 		return description;
 	}
@@ -112,7 +112,7 @@ public class Photo {
 		this.description = description;
 	}
 	
-//  Url 
+//  Url --------------------------------------
 	public String getUrl() {
 		return url;
 	}
@@ -120,7 +120,7 @@ public class Photo {
 		this.url = url;
 	}
 	
-//  Visibility
+//  Visibility --------------------------------------
 	public boolean isVisible() {
 		return visible;
 	}
@@ -129,8 +129,7 @@ public class Photo {
 	}
 
 	// ------------------ Relations ------------------ // 
-
-//  Categories
+//  Categories 
 	public List<Category> getCategories() {
 		return categories;
 	}
@@ -145,7 +144,8 @@ public class Photo {
 	public void setTags(Set<Tag> tags) {
 		this.tags = tags;
 	}
-	
+	// ------------------------------------------------- //
+
 	
 	@Override
 	public String toString() {

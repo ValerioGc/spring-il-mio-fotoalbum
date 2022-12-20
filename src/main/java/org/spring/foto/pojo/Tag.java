@@ -42,12 +42,12 @@ public class Tag {
 	}
 
 	
-//  ID
+//  ID --------------------------------------
 	public int getId() {
 		return id;
 	}
 	
-//  Name
+//  Name --------------------------------------
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -55,7 +55,7 @@ public class Tag {
 		return name;
 	}
 
-//  Photos
+//  Photos --------------------------------------
 	public List<Photo> getPhotos() {
 		return photos;
 	}
