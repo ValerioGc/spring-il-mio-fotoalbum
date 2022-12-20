@@ -7,6 +7,15 @@
 		<!-- Header -->
 		<th:block th:replace="fragments :: header()"></th:block>
 	
+		<div class="text-center my-5">
+			<a href="/admin/photo/create" class="btn btn-primary">
+				Inserisci una nuova foto
+			</a>
+		</div>
+		
+		<!-- Messaggi -->
+		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
+		<th:block th:replace="fragments :: successMsg(${successMsg})"	></th:block>
 	
 		<!-- Main -->
 		<main class="container-fluid">

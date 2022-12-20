@@ -50,8 +50,25 @@
 					<a href="/login">Login</a>
 				</span>
 			</div>
-			
-			
 		</div>
 	</div>
-</header>
+</header>	
+			
+			
+<!--------------------- Errors Msg ----------------------->
+
+<ul th:fragment="errorMsg(errors)" th:if="${errors}" class="list-group list-unstyled">
+	<li th:each="error : ${errors}" th:object="${error}" class="p-4 alert alert-danger text-capitalize">
+		[[*{defaultMessage}]]
+	</li>
+</ul>
+
+
+
+<!--------------------- Success Msg ----------------------->
+
+<div th:fragment="successMsg(successMsg)" th:if="${successMsg}" 
+	 class="p-4 alert w-50 mx-auto alert-success text-capitalize timed-exit my-1">
+	[[${successMsg}]]
+</div>
+				
