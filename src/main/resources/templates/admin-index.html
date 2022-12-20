@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Index Foto</title>
+		<link rel="shortcut icon" th:href="@{/favicon.ico}">
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+		<style>
+			.active {
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<!-- Header -->
+		<th:block th:replace="fragments :: header()"></th:block>
+	
+		<!-- Main -->
+		<main class="container-fluid">
+			<div class="card w-25 m-auto p-4 my-5" th:each="photo : ${photos}" th:object="${photo}"> 
+				<!-- th:if="${photo.isVisible()}"> --> 
+				<ul class="list-unstyled">
+					<li class=" text-center mt-1 mb-3">
+						<span class="fw-bold">		
+							[[${photo.title}]]
+						</span>
+					</li>
+					<li>
+						<span class="fw-bold">ID: </span>
+						<span>
+							[[${photo.id}]]
+						</span>
+					</li>
+					<li>
+						<span class="fw-bold">Descrizione: </span>
+						<span>
+							[[${photo.description}]]
+						</span>
+					</li>
+					<li>
+						<span class="fw-bold">URL: </span>
+						<span>
+							[[${photo.url}]]
+						</span>
+					</li>
+					
+					<li>
+						<span class="fw-bold">Visibile: </span>
+						<span>
+							[[${photo.visible}]]
+						</span>
+					</li>
+					<li class="my-3">
+						<span class="fw-bold">Categoria:</span>
+						<hr/>
+						<span th:each="category : ${photo.getCategories()}" th:object="${category}">
+							[[${category.name}]]
+						</span>
+						<span th:if="${photo.getCategories().isEmpty()}">Nessuna categoria associata</span>
+					</li>
+					<li class="my-3">
+						<hr>
+						<span class="fw-bold">Tags:</span>
+						<span th:each="tag : ${photo.getTags()}" th:object="${tag}">[[${tag.name}]], </span>
+						<span th:if="${photo.getTags().isEmpty()}">Nessun tag associato</span>
+					</li>
+				</ul>
+				<div class="text-center">
+					<a class="btn btn-success">Dettagli</a>
+					<a class="btn btn-primary" href="#">Modifica</a>
+					<a class="btn button btn-danger">Elimina</a>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>

@@ -47,8 +47,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		Category c1 = new Category("TestNome1");
-		Category c2 = new Category("TestNome2");
+		Category c1 = new Category("Categoria1");
+		Category c2 = new Category("Categoria2");
 		
 		List<Category> categoryL1 = new ArrayList<>(); 
 		categoryL1.add(c1);
@@ -57,23 +57,27 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		categoryService.save(c1);
 		categoryService.save(c2);
 		
-		Photo p1 = new Photo("TestNome1", "description1", "test-Url1", true);
-		Photo p2 = new Photo("TestNome2", "description2", "test-Url2", true, categoryL1);
-		Photo p4 = new Photo("TestNome4", "description4", "test-Url4", false);
+		Photo p1 = new Photo("foto-1", "description-1", "test-Url-1", true);
+		Photo p2 = new Photo("foto-2", "description-2", "test-Url-2", true, categoryL1);
+		Photo p3 = new Photo("foto-3", "description-3", "test-Url-3", true);
+		Photo p4 = new Photo("foto-4", "description-4", "test-Url-4", false);
+		
 		
 		List<Photo> photosL1 = new ArrayList<>(); 
 		photosL1.add(p1);
 		photosL1.add(p2);
-		photosL1.add(p4);
+		photosL1.add(p3);
 
 		photoService.save(p1);
 		photoService.save(p2);
+		photoService.save(p3);
+		photoService.save(p4 );
 		
 		System.out.println(p1);
 		System.out.println(p2);
 		
 		
-		Category c3 = new Category("TestNome3-category", photosL1);
+		Category c3 = new Category("categoria-3", photosL1);
 		
 		categoryService.save(c3);
 		
@@ -81,6 +85,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		System.out.println(c2);
 		System.out.println(c3);
 
+	//  Tags
 		Tag t1 = new Tag("landscape");
 		Tag t2 = new Tag("nature");
 		Tag t3 = new Tag("mountains",  photosL1);
@@ -93,7 +98,17 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		System.out.println(t2);
 		System.out.println(t3);
 		
+		Set<Tag> tagsL1 = new HashSet<>(); 
+		tagsL1.add(t1);
+		tagsL1.add(t2);
+		tagsL1.add(t3);
 		
+		Photo p5 = new Photo("foto-5", "description-5", "test-Url-5", true, categoryL1, tagsL1);
+		photoService.save(p5);
+		
+		System.out.println(p5);
+		
+	//  Users and roles
 		
 		Role admin = new Role("ADMIN");
 		Role user = new Role("USER");

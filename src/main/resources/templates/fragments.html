@@ -1,0 +1,26 @@
+
+<header th:fragment="header()"
+		class="bg-dark">
+		
+	<div class="container-fluid">
+		<div class="row">
+			<a class="col-3 p-0 navbar-brand m-3">Spring Foto</a>
+			<nav class="col">
+				<ul class="d-flex m-3 list-unstyled align-items-center justify-content-between">
+					<li	class="px-2">
+						<a href="/" th:class="'nav-link ' + ${routeName.equals('home')}? 'active':''">Home</a>
+					</li>
+					<li class="px-2">
+						<a href="/admin/photo/index" th:class="${routeName.equals('foto')}? 'active':''">Foto</a>
+					</li>
+					<li class="px-2">
+						<a href="/admin/category/index" th:class="${routeName.equals('categorie')}? 'active':''">Categorie</a>
+					</li>
+					<li class="px-2">
+						<a href="/admin/tag/index" th:class="${routeName.equals('tags')}? 'active':''">Tags</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
