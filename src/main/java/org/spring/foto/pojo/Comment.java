@@ -17,6 +17,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table
 public class Comment {
+	 
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

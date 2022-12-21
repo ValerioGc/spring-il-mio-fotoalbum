@@ -13,6 +13,6 @@ public class PublicAreaController {
 	@GetMapping 
 	public String getHomePage(Model model) {
 		model.addAttribute("routeName", "home");
-		return "home";
+		return "home"; 
 	}
 }

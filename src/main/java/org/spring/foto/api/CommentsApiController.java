@@ -24,7 +24,7 @@ public class CommentsApiController {
 	PhotoService photoService;
 	
 	@Autowired
-	CategoryService categoryService;
+	CategoryService categoryService; 
 	
 	
 //  Index categories
