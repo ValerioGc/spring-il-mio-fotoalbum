@@ -15,39 +15,48 @@
 				  th:object="${obj}" 
 				  class="card text-center w-50 mx-auto d-flex justify-content-between align-items-center my-5">
 				
-				<h4 class="text-center"
+				<h4 class="text-center pt-4"
 					th:text="${routeName.equals('edit')}?'Modifica Post':'Crea Post'"></h4>
 				
 				<div class="w-100 p-4 d-flex justify-content-around align-items-center flex-row">
-					<div>
 					
-						<span class="my-2">
+					<div class="w-50">
+					
+						<div class="my-2">
 							<label class="d-block fw-bold pb-2">Titolo:</label>
 							<input type="text" name="title" class="p-1 w-75" 
-									th:field="*{title}"/>
-						</span>
-						<span class="my-2">
+									th:field="*{title}"
+									placeholder="Inserisci il titolo della foto"/>
+						</div>
+						<div class="my-2">
 							<label class="d-block fw-bold pb-2">Descrizione:</label>
 							<input type="text" name="description" 
-									class="p-1 w-75" th:field="*{description}" style="min-height:120px;"/>
-						</span>
+									class="p-1 w-75" 
+									th:field="*{description}" 
+									style="min-height:120px;"
+									placeholder="Inserisci la descrizione della foto" />
+						</div>
 						
-						<span class="my-2">
+						<div class="my-2">
 							<label class="d-block fw-bold pb-2">URL:</label>
 							<input type="text" class="p-1 w-75"  
-									th:field="*{url}"/>
-						</span>
+									th:field="*{url}"
+									placeholder="Inserisci l'url della foto"/>
+						</div>
 						
 					
-						<div class="mt-3">
-							<label class="fw-bold pe-2 d-inline-block">Tag:</label>
-							<input type="text" name="tag" th:field="*{tag}"/>
-						</div>
+
 					</div>
 					
-					<div>
+					<div class="w-50">
 					
-						<div class="my-3">
+						<div class="mb-3">
+							<label class="fw-bold pe-2 d-inline-block">Tag:</label>
+							<input type="text" name="tag" th:field="*{tag}"
+									placeholder="Inserisci il tag"/>
+						</div>
+					
+						<div class="my-4 py-2">
 							<span class="fw-bold me-3 vertical-align-middle">Visibile:</span>
 							<input type="radio" name="visible" value="true" id="chY" 
 								   th:field="*{visible}"/>

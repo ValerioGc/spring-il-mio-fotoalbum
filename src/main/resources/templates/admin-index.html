@@ -7,11 +7,6 @@
 		<!-- Header -->
 		<th:block th:replace="fragments :: header()"></th:block>
 	
-		<div class="text-center my-5">
-			<a href="/admin/photo/create" class="btn btn-primary">
-				Crea una nuovo post
-			</a>
-		</div>
 		
 		<!-- Messaggi -->
 		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
@@ -19,10 +14,10 @@
 	
 	
 		<!-- Ricerca  -->
-		<div class="w-25 mx-auto my-4">
-			<form>
-				<label>Cerca una foto per nome e tag</label>
-				<input type="text" name="query" th:value="${query}">
+		<div class="w-100 text-center" style="border-bottom:1px solid black;background-color:grey">
+			<form class="p-4">
+				<label class="fw-bold my-3 me-3 d-inline-block">Rierca foto:</label>
+				<input type="text" name="query" th:value="${query}" class="my-3 me-3 p-1 w-25" placeholder="Inserisci il nome o il tag da cercare">
 				
 				<input type="submit" class="btn btn-primary" value="Cerca">
 			</form>
@@ -80,17 +75,17 @@
 				</ul>
 				<div class="text-center">
 					<a th:href="@{'/admin/photo/show/{id}' (id=*{id}) }"
-					   class="btn btn-success">
+					   class="btn btn-success mx-1">
 						Dettagli
 			   		</a>
 					   
 					<a th:href="@{'/admin/photo/edit/{id}' (id=*{id}) }"
-					   class="btn btn-primary" href="#">
+					   class="btn btn-primary mx-2">
 					   	Modifica
 				   	</a>
 					
 					<a th:href="@{'/admin/photo/delete/{id}' (id=*{id}) }"
-					   class="btn button btn-danger" onclick="deleteConfirmation()">
+					   class="btn button btn-danger mx-1" onclick="deleteConfirmation()">
 						Elimina
 				   	</a>
 				</div>

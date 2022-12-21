@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="ISO-8859-1">
-		<title>Insert title here</title>
-	</head>
+	<th:block th:replace="fragments :: head('Home Page')"></th:block>
+	
 	<body>
-		<h1>Benvenuto nell'homepage dell'app</h1>
-		<a href="/login">
-			Effettua l'accesso
-		</a>
+		
+		<!-- Header -->
+		<th:block th:replace="fragments :: header()"></th:block>
+		
+		<main>
+			<div class="container-fluid text-center my-5">
+				<h1>Benvenuto nell'homepage dell'app</h1>
+				<a href="/login" class="btn btn-primary my-5">
+					Effettua l'accesso
+				</a>
+			</div>
+		</main>
 	</body>
 </html>

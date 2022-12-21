@@ -17,32 +17,33 @@
 		
 	<div class="container-fluid">
 		<div class="row">
-			<a class="col-2 p-0 navbar-brand m-3">Spring Foto</a>
-			<nav class="col">
+			<a class="col-3 p-0 navbar-brand m-3">Spring Foto</a>
+			<nav class="col" style="align-self:center;">
 				<ul class="d-flex m-3 list-unstyled align-items-center justify-content-between">
 					<li	class="px-2">
-						<a href="/" th:class="'nav-link ' + ${routeName.equals('home')}? 'active':''">Home</a>
+						<a href="/" th:class="'' + ${routeName.equals('home')}? 'active':''">Home</a>
 					</li>
 					<li class="px-2">
 						<a href="/admin/photo/index" th:class="${routeName.equals('foto')}? 'active':''">Foto</a>
 					</li>
 					<li class="px-2">
-						<a href="/admin/category/index" th:class="${routeName.equals('categorie')}? 'active':''">Categorie</a>
+						<a href="/admin/photo/create" th:class="${routeName.equals('create')}? 'active':''">Inserisci nuova foto</a>
 					</li>
 					<li class="px-2">
-						<a href="/admin/tag/index" th:class="${routeName.equals('tags')}? 'active':''">Tags</a>
+						<a href="/admin/category/index" th:class="${routeName.equals('categorie')}? 'active':''">Categorie</a>
 					</li>
 				</ul>
 			</nav>
 			
 			<!-- User Bar -->
-			<div class=" text-light">
+			<div class="col-2 text-center p-3 text-light bg-secondary" style="border-left:1px solid black">
 				<i class="fa-solid fa-user me-2"></i>
 				<span sec:authorize="isAuthenticated()">
-					<span sec:authentication="name" onclick="showOptions()"></span>
+				
+					<span sec:authentication="name" id="userName"></span>
 					
-					<span sec:authorize="isAuthenticated()" class="d-none">
-						<a href="/logout">Logout</a>
+					<span sec:authorize="isAuthenticated()" class="d-inline-block">
+						<a href="/logout" class="optMenu btn btn-primary">Logout</a>
 					</span>
 				</span>
 				

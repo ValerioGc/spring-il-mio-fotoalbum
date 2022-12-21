@@ -56,8 +56,8 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		
 		Photo p1 = new Photo("foto-1", "description-1", "test-Url-1", true);
 		Photo p2 = new Photo("foto-2", "description-2", "test-Url-2", true, categoryL1);
-		Photo p3 = new Photo("foto-3", "description-3", "test-Url-3", true);
-		Photo p4 = new Photo("foto-4", "description-4", "test-Url-4", false);
+		Photo p3 = new Photo("foto-3", "description-3", "test-Url-3", true, "landscape");
+		Photo p4 = new Photo("foto-4", "description-4", "test-Url-4", false, "nature");
 		
 		
 		List<Photo> photosL1 = new ArrayList<>(); 

@@ -1,5 +1,33 @@
 @charset "ISO-8859-1";
 
+* {
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+}
 .active {
-	color:red;
+	color:blue;
+	border-bottom:2px solid blue;
+}
+
+.header {
+	position:relative;
+}
+
+header ul li a {
+	display:inline-block;
+	text-decoration:none;
+	font-size:18px;
+	color:#ffffff;
+	border-bottom:2px solid transparent;
+}
+
+.optMenu {
+	margin-left:2rem;
+
+}
+
+#userName {
+	text-transform:capitalize;
+	display:inline-block;
 }
