@@ -22,6 +22,7 @@ public class ApiController {
 	public List<Photo> getPhotos() {
 		
 		List<Photo> pht = photoService.findAll();
+		System.out.println("PHT:" + pht);
 		
 		for (Photo photo : pht) {
 			if (!photo.isVisible()) {

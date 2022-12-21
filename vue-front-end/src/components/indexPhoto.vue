@@ -5,7 +5,7 @@
           
             <div class="d-flex justify-content-between align-items-center">
                 <h4>{{photo.title}}</h4>
-                <span v-if="photo.tag">Tag: {{photo.tag}}</span>
+                <span v-if="photo.tag"><span class="fw-bold me-2">Tag:</span> {{photo.tag}}</span>
             </div>
 
             <img src="../assets/logo.png" :alt="photo.title" class="w-50 m-auto my-2" />
@@ -22,7 +22,19 @@
                     <em>{{photo.url}}</em>
                 </span>
             </div>
-    
+
+            <div class="category-section" v-if="photo.categories">
+
+                <h4 class="py-3">Categorie:</h4>
+                <hr/> 
+                <ul >
+                    <li v-for="(category, index) in photo.categories" :key="index">
+                        {{ category.name }}
+                    </li>
+                </ul>
+
+            </div>
+
             <div>
                 <div v-if="photo.comments" class="comment-section">
                     <h4 class="py-3">Commenti:</h4>
@@ -30,9 +42,9 @@
                         {{ comment.content }}
                     </p>
                 </div>
-                <form action="">
-                    <input type="text" name="comment" style="min-height: 120px;" class="d-block w-75 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
-                    <a type="submit" class="btn btn-primary my-3">Invia</a>
+                <form class="text-center">
+                    <input type="text" name="comment" v-model="newCom" style="min-height: 120px;" class="d-block w-75 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
+                    <button @click="sendComment(photo)" type="submit" class="btn btn-primary my-3">Invia</button>
                 </form>
             </div>
 
@@ -50,24 +62,58 @@
         name: 'indexPhoto',
         data() {
             return {
-                apiUrl:"http://localhost:8080/api/1/photo/index",
-                photoArray: []
+                apiUrl:"http://localhost:8080/api/1",
+                photoArray: [],
+                newCom:"",
+                activePhotoId: -1
             }
         },
         mounted() {
-            axios.get(this.apiUrl)
+            axios.get(this.apiUrl +"/photo/index")
                 .then(response => {
-                    const photoList = response.data;
-                    if (photoList == null) return;
+                    this.photoArray = response.data;
 
-                    this.photoArray = photoList;
+                    for (let i = 1; i <= response.data.length; i++) {
+                        this.getPhotoCategories(i);
+                    }
                 })
                 .catch(err => {
-                    console.log("errore" + err);
+                    console.log("errore: " + err);
                 });
         },
         methods:{
-            
+            getPhotoCategories(id) {
+                axios.get(this.apiUrl + "/categories/get/" + id)
+                    .then(response => {
+                        const cat = response.data;
+                        
+                        const indx = this.getPhotoIndexById(id);
+
+                        if (cat !== null) {
+                            this.photoArray[indx].categories = cat;
+                        } else {
+                            return;
+                        }
+                    });
+            },
+            //  Trova Id foto
+            getPhotoIndexById(id) {
+                for (let i = 0; i < this.photoArray.length; i++) {
+                    const photo = this.photoArray[i];
+
+                    if (photo.id == id) {
+                        return i;
+                    }
+                }
+                return -1;
+            },
+            //  Trova foto
+            getPhotoById(id) {
+                return this.photoArray[this.getPhotoIndexById(id)];
+            },
+            getASize(array) {
+                return array.length;
+            }
         }
     }
 </script>

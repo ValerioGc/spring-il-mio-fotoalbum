@@ -1,5 +1,5 @@
 <template>
-  <div id="appContainer">
+  <div id="appContainer" class="bg-light">
     <mainHeader />
     <indexPhoto />
     <mainFooter />

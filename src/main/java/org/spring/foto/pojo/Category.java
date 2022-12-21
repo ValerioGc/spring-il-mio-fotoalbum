@@ -65,7 +65,7 @@ public class Category {
 	
 	@Override
 	public String toString() {
-		return "Nome categoria: " + getName()
-				+ "Foto: " + getPhotos();
+		return "Nome categoria: " + getName();
+//				+ "Foto: " + getPhotos();
 	}
 }

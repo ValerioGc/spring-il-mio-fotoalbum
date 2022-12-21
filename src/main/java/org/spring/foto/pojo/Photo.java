@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.persistence.Version;
@@ -55,6 +57,11 @@ public class Photo {
 	@JsonIgnore
 	private List<Category> categories; 
 	
+	
+//	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
+//	private List<Comment> comments; 
+	
+	
 //	@ManyToMany
 //	@JsonIgnore
 //	private Set<Tag> tags;
@@ -78,7 +85,7 @@ public class Photo {
 		setVisible(visible);
 		setCategories(categories);
 	}
-//  With tags
+//  With tag
 	public Photo(String title, String description, String url, 
 			boolean visible, String tag) {
 		
@@ -86,10 +93,9 @@ public class Photo {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
-		setCategories(categories);
 		setTag(tag);
 	}
-//  With Categories and tags
+//  With Categories and tag
 	public Photo(String title, String description, String url, 
 			boolean visible, List<Category> categories, String tag) {
 
@@ -97,9 +103,9 @@ public class Photo {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setCategories(categories);
 		setTag(tag);
 	}
-	
 	
 //  Id	--------------------------------------
 	public int getId() {
@@ -161,6 +167,15 @@ public class Photo {
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+	
+//  Comments
+//	public List<Comment> getComments() {
+//		return comments;
+//	}
+//	public void setComments(List<Comment> comments) {
+//		this.comments = comments;
+//	}
+//	
 	// ------------------------------------------------- //
 
 	

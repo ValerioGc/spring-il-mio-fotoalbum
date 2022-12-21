@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-dark p-5">
+    <footer class="bg-dark p-5 text-center">
         <ul class="list-unstyled text-light">
             <li class="h5 fw-bold">Contacts:</li>
             <li class="py-1">
@@ -15,7 +15,7 @@
                 <a>Contact4</a>
             </li>
         </ul>
-        <p class="py-3 mb-0">&#169; Copyright 2020</p>
+        <p class="py-3 mb-0 text-light">&#169; Copyright 2020</p>
     </footer>
 </template>
 

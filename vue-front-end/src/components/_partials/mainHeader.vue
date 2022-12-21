@@ -1,18 +1,18 @@
 
 <template>
-    <header class="mb-3">
-        <nav class="navbar navbar-expand-lg bg-light">
+    <header class="mb-3 p-2 bg-dark">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Spring Foto</a>
+                <a class="navbar-brand  text-light" href="#">Spring Foto</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-around" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link active mx-2" aria-current="page" href="#">Home</a>
-                        <a class="nav-link mx-2" href="#">Foto</a>
-                        <a class="nav-link mx-2">Categorie</a>
+                    <div class="navbar-nav w-50 justify-content-around align-items-center">
+                        <a class="nav-link mx-2 text-light" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active mx-2 text-light" href="#">Foto</a>
+                        <a class="nav-link mx-2 text-light">Categorie</a>
                     </div>
                 </div>
             </div>
