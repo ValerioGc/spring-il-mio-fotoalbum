@@ -20,6 +20,14 @@ public class ApiController {
 	
 	@GetMapping("/photo/index")
 	public List<Photo> getPhotos() {
-		return photoService.findAll();
+		
+		List<Photo> pht = photoService.findAll();
+		
+		for (Photo photo : pht) {
+			if (!photo.isVisible()) {
+				pht.remove(photo);
+			}
+		}
+		return pht;
 	}
 }

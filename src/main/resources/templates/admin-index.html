@@ -6,13 +6,7 @@
 		
 		<!-- Header -->
 		<th:block th:replace="fragments :: header()"></th:block>
-	
 		
-		<!-- Messaggi -->
-		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
-		<th:block th:replace="fragments :: successMsg(${successMsg})"	></th:block>
-	
-	
 		<!-- Ricerca  -->
 		<div class="w-100 text-center" style="border-bottom:1px solid black;background-color:grey">
 			<form class="p-4">
@@ -22,8 +16,13 @@
 				<input type="submit" class="btn btn-primary" value="Cerca">
 			</form>
 		</div>
-
+	
 		
+		<!-- Messaggi -->
+		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
+		<th:block th:replace="fragments :: successMsg(${successMsg})"	></th:block>
+	
+	
 		<!-- Main -->
 		<main class="container-fluid">
 			<div class="card w-25 m-auto p-4 my-5" th:each="photo : ${photos}" th:object="${photo}" th:if="${!photos.isEmpty()}"> 
