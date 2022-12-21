@@ -1,26 +1,24 @@
 <template>
-  <div id="appContainer" class="bg-light">
+  <div>
     <mainHeader />
-    <indexPhoto />
+    <router-view/>
     <mainFooter />
   </div>
 </template>
 
 <script>
 
-  import indexPhoto from './components/indexPhoto.vue'
 
-  import mainHeader from './components/_partials/mainHeader.vue'
-  import mainFooter from './components/_partials/mainFooter.vue'
-      
-  export default {
-    name: 'App',
-    components: {
-      indexPhoto,
-      mainHeader,
-      mainFooter
-    }
+import mainHeader from './components/_partials/mainHeader.vue'
+import mainFooter from './components/_partials/mainFooter.vue'
+
+export default {
+  name: 'App',
+  components: {
+    mainHeader,
+    mainFooter
   }
+}
 
 </script>
 
@@ -31,4 +29,5 @@
     margin: 0;
     padding: 0;
   }
+
 </style>

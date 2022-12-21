@@ -10,9 +10,9 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-around" id="navbarNavAltMarkup">
                     <div class="navbar-nav w-50 justify-content-around align-items-center">
-                        <a class="nav-link mx-2 text-light" aria-current="page" href="#">Home</a>
-                        <a class="nav-link active mx-2 text-light" href="#">Foto</a>
-                        <a class="nav-link mx-2 text-light">Categorie</a>
+                        <router-link class="nav-link mx-2 text-light" to="/">Home</router-link> 
+                        <router-link  aria-current="page" class="nav-link active mx-2 text-light" to="/">Foto</router-link>
+                        <router-link class="nav-link mx-2 text-light" to="/categories">Categorie</router-link>
                     </div>
                 </div>
             </div>

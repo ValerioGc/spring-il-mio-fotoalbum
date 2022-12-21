@@ -2,9 +2,9 @@
 
     <main class="container-fluid">
         <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto">
-          
+        
             <div class="d-flex justify-content-between align-items-center">
-                <h4>{{photo.title}}</h4>
+                <h4 class="text-capitalize">{{photo.title}}</h4>
                 <span v-if="photo.tag"><span class="fw-bold me-2">Tag:</span> {{photo.tag}}</span>
             </div>
 
@@ -35,17 +35,17 @@
 
             </div>
 
-            <div>
-                <div v-if="photo.comments" class="comment-section">
-                    <h4 class="py-3">Commenti:</h4>
-                    <p v-for="(comment, index) in photo.comments" :key="index" class="card">
+            <div class="my-3" style="border: 2px solid black;border-radius:5px">
+                <h4 class="bg-secondary text-light p-3">Commenti:</h4>
+                <div v-if="photo.comments.length" class="px-4 py-2 comment-section">
+                    <p v-for="(comment, index) in photo.comments" :key="index" class="bg-light p-3">
                         {{ comment.content }}
                     </p>
                 </div>
-                <form class="text-center">
-                    <input type="text" name="comment" v-model="newCom" style="min-height: 120px;" class="d-block w-75 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
-                    <button @click="sendComment(photo)" type="submit" class="btn btn-primary my-3">Invia</button>
-                </form>
+                    <form class="text-center bg-secondary w-100 px-3 py-2">
+                        <input type="text" name="comment" v-model="newCom" style="min-height: 120px;" class="d-block w-100 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
+                        <button @click="sendComment(photo)" type="submit" class="btn btn-primary my-3">Invia</button>
+                    </form>
             </div>
 
             
