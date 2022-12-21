@@ -15,20 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin("*")
 public class ApiController {
 	
+	
 	@Autowired
 	private PhotoService photoService;
+	
 	
 	@GetMapping("/photo/index")
 	public List<Photo> getPhotos() {
 		
-		List<Photo> pht = photoService.findAll();
-		System.out.println("PHT:" + pht);
+		List<Photo> photoList = photoService.findAll();
 		
-		for (Photo photo : pht) {
-			if (!photo.isVisible()) {
-				pht.remove(photo);
-			}
-		}
-		return pht;
+//		for (Photo photo : photoList) {
+//			if (!photo.isVisible()) {
+//				pht.remove(photo);
+//			}
+//		}
+		return photoList;
 	}
 }

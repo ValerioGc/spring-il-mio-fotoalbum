@@ -33,6 +33,7 @@ public class Role {
 //  ID --------------------------------------
 	public int getId() { return id; }
 	
+	
 //  Name -------------------------------------
 	public String getName() { return name; }
 	
@@ -40,6 +41,7 @@ public class Role {
 		this.name = name;
 	}
 
+	
 // 	Controllo tipo e hashcode ----------------
 	@Override
 	public int hashCode() {		
@@ -52,7 +54,6 @@ public class Role {
 		return obj.hashCode() == hashCode();
 	}
 
-//  ---------------------------------------------------
 	
 	@Override
 	public String toString() {

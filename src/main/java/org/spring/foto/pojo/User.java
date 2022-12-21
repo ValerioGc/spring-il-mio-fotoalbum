@@ -65,6 +65,7 @@ public class User {
 		this.username = username;
 	}
 	
+	
 //  Password ----------------------------------
 	public String getPassword() {
 		return password;
@@ -73,6 +74,7 @@ public class User {
 		this.password = password;
 	}
 	
+	
 //  Roles   -------------------------------------
 	public Set<Role> getRoles() {
 		return roles;
@@ -80,6 +82,7 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
 	// Add role ----------------------------------
 	public void addRole(Role role) {
 		
@@ -89,7 +92,7 @@ public class User {
 		getRoles().add(role);
 	}
 	
-// -----------------------------------------------------
+
 	
 	@Override
 	public String toString() {

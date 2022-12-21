@@ -3,8 +3,6 @@ package org.spring.foto.pojo;
 import java.util.List;
 import java.util.Set;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -17,14 +15,13 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
-import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Table
 @Entity
 public class Photo {
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,22 +48,21 @@ public class Photo {
 	@NotNull(message = "Il nome dell'ingrediente non deve essere vuoto")
 	private boolean visible;
 	
-
 	
 	@ManyToMany
 	@JsonIgnore
 	private List<Category> categories; 
 	
 	
-//	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
-//	private List<Comment> comments; 
+	@OneToMany(mappedBy = "photo", cascade = CascadeType.REMOVE)
+	private Set<Comment> comments; 
 	
 	
 //	@ManyToMany
 //	@JsonIgnore
 //	private Set<Tag> tags;
-	
 	private String tag;
+	
 	
 	public Photo() { }
 	public Photo(String title, String description, String url, boolean visible) {
@@ -74,6 +70,14 @@ public class Photo {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+	}
+// 	Test comment
+	public Photo(String title, String description, String url, boolean visible, Set<Comment> comments) {
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
+		setVisible(visible);
+		setComments(comments);
 	}
 //  With categories
 	public Photo(String title, String description, String url, 
@@ -93,6 +97,7 @@ public class Photo {
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
+		setCategories(categories);
 		setTag(tag);
 	}
 //  With Categories and tag
@@ -107,11 +112,13 @@ public class Photo {
 		setTag(tag);
 	}
 	
+	
 //  Id	--------------------------------------
 	public int getId() {
 		return id;
 	}
 
+	
 //  Title --------------------------------------
 	public String getTitle() {
 		return title;
@@ -119,6 +126,7 @@ public class Photo {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+	
 	
 //  Description --------------------------------------
 	public String getDescription() {
@@ -128,6 +136,7 @@ public class Photo {
 		this.description = description;
 	}
 	
+	
 //  Url --------------------------------------
 	public String getUrl() {
 		return url;
@@ -135,6 +144,7 @@ public class Photo {
 	public void setUrl(String url) {
 		this.url = url;
 	}
+	
 	
 //  Visibility --------------------------------------
 	public boolean isVisible() {
@@ -144,7 +154,8 @@ public class Photo {
 		this.visible = visible;
 	}
 
-	// ------------------ Relations ------------------ // 
+	
+// ------------------ Relations ------------------ // 
 //  Categories 
 	public List<Category> getCategories() {
 		return categories;
@@ -153,6 +164,16 @@ public class Photo {
 		this.categories = categories;
 	}
 
+
+//  Comments
+	public Set<Comment> getComments() {
+		return comments;
+	}
+	public void setComments(Set<Comment> comments) {
+		this.comments = comments;
+	}
+
+	
 //  Tags
 //	public Set<Tag> getTags() {
 //		return tags;
@@ -160,7 +181,10 @@ public class Photo {
 //	public void setTags(Set<Tag> tags) {
 //		this.tags = tags;
 //	}
+	
+// ------------------------------------------------- //
 
+//  Tag
 	public String getTag() {
 		return tag;
 	}
@@ -168,16 +192,7 @@ public class Photo {
 		this.tag = tag;
 	}
 	
-//  Comments
-//	public List<Comment> getComments() {
-//		return comments;
-//	}
-//	public void setComments(List<Comment> comments) {
-//		this.comments = comments;
-//	}
-//	
-	// ------------------------------------------------- //
-
+	
 	
 	@Override
 	public String toString() {

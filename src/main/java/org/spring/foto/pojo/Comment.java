@@ -17,53 +17,60 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 @Table
 public class Comment {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 
-	@Lob
 	@NotNull(message = "Il contenuto del commento non può essere null")
 	@NotEmpty(message = "Il contenuto del commento non può essere null")
+	@Lob
 	private String content;
 	
-//	@ManyToOne
-//	@JsonIgnore
-//	@JoinColumn(name="photo_id", nullable=true)
-//	private Photo photo;
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name="photo_id", nullable=true)
+	private Photo photo;
+	
+	
 	
 	public Comment() { }
 	public Comment(Photo photo, String content) {
-//		setPhoto(photo);
+		setPhoto(photo);
 		setContent(content);
 	}
 	
+	
+	
+//  Id	--------------------------------------
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
 
+//  Content	--------------------------------------
 	public String getContent() {
 		return content;
 	}
-
 	public void setContent(String content) {
 		this.content = content;
 	}
 
-//	public Photo getPhoto() {
-//		return photo;
-//	}
-//
-//	public void setPhoto(Photo photo) {
-//		this.photo = photo;
-//	}
+	
+//  Photo	--------------------------------------
+	public Photo getPhoto() {
+		return photo;
+	}
+	public void setPhoto(Photo photo) {
+		this.photo = photo;
+	}
+	
+	
 	
 	@Override
 	public String toString() {
-		return "Commento: " + getContent();
+		return "Commento: " + getContent()
+				+ "Foto associata: " + getPhoto();
 	}
 }

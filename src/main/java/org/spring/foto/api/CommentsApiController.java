@@ -1,8 +1,10 @@
 package org.spring.foto.api;
 
 import java.util.List;
+import java.util.Set;
 
 import org.spring.foto.pojo.Category;
+import org.spring.foto.pojo.Comment;
 import org.spring.foto.pojo.Photo;
 import org.spring.foto.service.CategoryService;
 import org.spring.foto.service.PhotoService;
@@ -13,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/1/categories")
+@RequestMapping("/api/1/comments")
 @CrossOrigin("*")
-public class CategoriesApiController {
+public class CommentsApiController {
 	
 	
 	@Autowired
@@ -35,16 +37,16 @@ public class CategoriesApiController {
 	
 //  Photo Categories
 	@RequestMapping("/get/{id}") 
-	public List<Category> getPhotoCategories(@PathVariable("id") int id) {
+	public Set<Comment> getPhotoCategories(@PathVariable("id") int id) {
 		
 		Photo photo = photoService.findPhotoById(id).get();
 		
-		List<Category> cat = photo.getCategories();
+		Set<Comment> com = photo.getComments();
 		
-		if (cat.isEmpty()) {
+		if (com.isEmpty()) {
 			return null;
 		}
 
-		return cat;
+		return com;
 	}
 }

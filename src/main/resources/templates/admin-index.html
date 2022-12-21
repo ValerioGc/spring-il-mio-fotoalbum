@@ -18,8 +18,9 @@
 		</div>
 	
 		
-		<!-- Messaggi -->
+		<!-- Messaggi errore -->
 		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
+		<!-- Messaggi conferma -->
 		<th:block th:replace="fragments :: successMsg(${successMsg})"	></th:block>
 	
 	
@@ -50,7 +51,6 @@
 							[[${photo.url}]]
 						</span>
 					</li>
-					 
 					<li>
 						<span class="fw-bold">Visibile: </span>
 						<span>

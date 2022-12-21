@@ -16,29 +16,29 @@ public class CategoryService {
 	@Autowired
 	private CategoryRepo categoryRepo;
 	
-// Save
+//  Save
 	public void save(Category categories) {
 		categoryRepo.save(categories);
 	}
 		
-// Find
+//  Find
 	public List<Category> findAll() {
 		return categoryRepo.findAll();
 	}
 	
-// Find by ID
+//  Find by ID
 	public Category findCategoryById(int id) {
 		return categoryRepo.findById(id).get();
 	}
 	
-// Delete by ID
+//  Delete by ID
 	public void deleteCategoryById(int id) {
 		categoryRepo.deleteById(id);
 	}
 	
-// Find pizzas
+//  Find Photos
 	@Transactional
-	public List<Category> findAllCategories() {
+	public List<Category> findAllCategoryPhotos() {
 		
 		List<Category> categories = categoryRepo.findAll();
 		

@@ -46,14 +46,16 @@ public class PhotoService {
 		return photoRepo.findByTitleContainingOrTagContaining(q, q);
 	}
 	
-//  Find Categories
+//  Find photo relations
 	@Transactional
-	public List<Photo> findAllPhotoCategory() {
+	public List<Photo> findAllPhotoRelations() {
 		
 		List<Photo> photos = photoRepo.findAll();
 		
 		for (Photo photo : photos) {
 			Hibernate.initialize(photo.getCategories());
+			Hibernate.initialize(photo.getComments());
+//			Hibernate.initialize(photo.getTags());
 		}
 		
 		return photos;

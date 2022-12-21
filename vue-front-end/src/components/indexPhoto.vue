@@ -8,7 +8,7 @@
                 <span v-if="photo.tag"><span class="fw-bold me-2">Tag:</span> {{photo.tag}}</span>
             </div>
 
-            <img src="../assets/logo.png" :alt="photo.title" class="w-50 m-auto my-2" />
+            <img src="../assets/ph.svg" :alt="photo.title" class="w-100 m-auto my-2" />
 
             <div class="my-4">
                 <h4>Descrizione</h4>
@@ -91,6 +91,20 @@
 
                         if (cat !== null) {
                             this.photoArray[indx].categories = cat;
+                        } else {
+                            return;
+                        }
+                    });
+            },
+            getPhotoComments(id) {
+                axios.get(this.apiUrl + "/comments/get/" + id)
+                    .then(response => {
+                        const com = response.data;
+
+                        const indx = this.getPhotoIndexById(id);
+
+                        if (com !== null) {
+                            this.photoArray[indx].comments = com;
                         } else {
                             return;
                         }

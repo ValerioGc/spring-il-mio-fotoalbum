@@ -27,6 +27,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/admin/photo")
 public class AdminPhotoAreaController {
 	
+	
 	@Autowired
 	PhotoService photoService;
 	

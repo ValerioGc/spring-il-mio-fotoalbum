@@ -63,9 +63,11 @@ public class Category {
 		this.photos = photos;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		return "Nome categoria: " + getName();
-//				+ "Foto: " + getPhotos();
+		return "Nome categoria: " + getName()
+				+ "Foto associate: " + getPhotos();
 	}
 }
