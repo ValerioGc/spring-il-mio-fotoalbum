@@ -9,6 +9,11 @@ const routes = [
     component: indexPhoto
   },
   {
+    path: '/foto',
+    name: 'foto',
+    component: indexPhoto
+  },
+  {
     path: '/categories',
     name: 'categorie',
     component: indexCategory

@@ -33,7 +33,7 @@ public class CategoriesApiController {
 		
 	}
 	
-//  Photo Categories
+//  Categories Photo
 	@RequestMapping("/get/{id}") 
 	public List<Category> getPhotoCategories(@PathVariable("id") int id) {
 		

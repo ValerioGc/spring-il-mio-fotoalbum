@@ -11,7 +11,7 @@
                 <div class="collapse navbar-collapse justify-content-around" id="navbarNavAltMarkup">
                     <div class="navbar-nav w-50 justify-content-around align-items-center">
                         <router-link class="nav-link mx-2 text-light" to="/">Home</router-link> 
-                        <router-link  aria-current="page" class="nav-link active mx-2 text-light" to="/">Foto</router-link>
+                        <router-link aria-current="page" class="nav-link active mx-2 text-light" to="/foto">Foto</router-link>
                         <router-link class="nav-link mx-2 text-light" to="/categories">Categorie</router-link>
                     </div>
                 </div>
@@ -28,6 +28,8 @@
 
 </script>
 
-<style lang="sass" scoped>
-
+<style lang="scss" scoped>
+.active {
+    color:red;
+}
 </style>

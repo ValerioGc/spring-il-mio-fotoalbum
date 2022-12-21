@@ -30,11 +30,15 @@ public class ApiController {
 		
 		List<Photo> photoList = photoService.findAll();
 		
-//		for (Photo photo : photoList) {
-//			if (!photo.isVisible()) {
-//				pht.remove(photo);
-//			}
-//		}
+		for (Photo photo : photoList) {
+			
+			if (!photo.isVisible()) {
+				
+//				photoList.remove(photo);
+			
+			}
+		}
+
 		return photoList;
 	}
 //  Photo Categories

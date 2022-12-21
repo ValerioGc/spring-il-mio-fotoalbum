@@ -1,15 +1,15 @@
 <template>
 
     <main class="container-fluid">
-        <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto">
-        
+        <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto" :class="(photo.visible)?'':'d-none'" >
+
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="text-capitalize">{{photo.title}}</h4>
                 <span v-if="photo.tag"><span class="fw-bold me-2">Tag:</span> {{photo.tag}}</span>
             </div>
-
+            
             <img src="../assets/ph.svg" :alt="photo.title" class="w-100 m-auto my-2" />
-
+            
             <div class="my-4">
                 <h4>Descrizione</h4>
                 <hr />
@@ -22,9 +22,9 @@
                     <em>{{photo.url}}</em>
                 </span>
             </div>
-
+            
             <div class="category-section" v-if="photo.categories">
-
+                
                 <h4 class="py-3">Categorie:</h4>
                 <hr/> 
                 <ul >
@@ -32,9 +32,9 @@
                         {{ category.name }}
                     </li>
                 </ul>
-
+                
             </div>
-
+            
             <div class="my-3" style="border: 2px solid black;border-radius:5px">
                 <h4 class="bg-secondary text-light p-3">Commenti:</h4>
                 <div v-if="photo.comments.length" class="px-4 py-2 comment-section">
@@ -42,16 +42,16 @@
                         {{ comment.content }}
                     </p>
                 </div>
-                    <form class="text-center bg-secondary w-100 px-3 py-2">
-                        <input type="text" name="comment" v-model="newCom" style="min-height: 120px;" class="d-block w-100 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
-                        <button @click="sendComment(photo)" type="submit" class="btn btn-primary my-3">Invia</button>
-                    </form>
+                <form class="text-center bg-secondary w-100 px-3 py-2">
+                    <input type="text" name="comment" v-model="usCom" style="min-height: 120px;" 
+                        class="d-block w-100 mx-auto my-3 p-1 form-control" placeholder="Inserici un nuovo commento" />
+                    <button @click="sendComment(photo.id)" type="submit" class="btn btn-primary my-3">Invia</button>
+                </form>
             </div>
 
-            
         </div>
     </main>    
-
+    
 </template>
 
 <script>
@@ -64,7 +64,8 @@
             return {
                 apiUrl:"http://localhost:8080/api/1",
                 photoArray: [],
-                newCom:"",
+                usCom:"",
+                newCom: { photo: '', content: ''},
                 activePhotoId: -1
             }
         },
@@ -127,7 +128,28 @@
             },
             getASize(array) {
                 return array.length;
+            },
+            // Invia commenti
+            sendComment(pId) {
+                if (this.usCom.trim() === '') { 
+                    alert('Il commento è vuoto')
+                    return;
+                }
+                this.newCom.photo = pId;
+                this.newCom.content = this.usCom;
+
+                axios.post(this.apiUrl + '/comments/store/' + pId, this.newCom)
+                    .then(response => {
+                        this.getPhotoComments(pId);
+                        this.usCom = '';
+                        console.log(response);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
+
+
         }
     }
 </script>
