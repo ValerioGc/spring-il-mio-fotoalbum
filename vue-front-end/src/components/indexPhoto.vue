@@ -1,5 +1,6 @@
 <template>
-    <div  class="container-fluid">
+
+    <main class="container-fluid">
         <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto">
           
             <div class="d-flex justify-content-between align-items-center">
@@ -37,13 +38,14 @@
 
             
         </div>
-    </div>    
+    </main>    
+
 </template>
 
 <script>
 
     import axios from 'axios';
-    
+
     export default {
         name: 'indexPhoto',
         data() {

@@ -1,26 +1,34 @@
 <template>
-  <indexPhoto />
+  <div id="appContainer">
+    <mainHeader />
+    <indexPhoto />
+    <mainFooter />
+  </div>
 </template>
 
 <script>
 
-import indexPhoto from './components/indexPhoto.vue'
+  import indexPhoto from './components/indexPhoto.vue'
 
-export default {
-  name: 'App',
-  components: {
-    indexPhoto
+  import mainHeader from './components/_partials/mainHeader.vue'
+  import mainFooter from './components/_partials/mainFooter.vue'
+      
+  export default {
+    name: 'App',
+    components: {
+      indexPhoto,
+      mainHeader,
+      mainFooter
+    }
   }
-}
+
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 </style>
