@@ -41,9 +41,9 @@ public class PhotoService {
 		photoRepo.deleteById(id);
 	}
 	
-// Find by name
-	public List<Photo> findByTitle(String title) {
-		return photoRepo.findByTitleContainingIgnoreCase(title);
+// Find by Name or Tag
+	public List<Photo> findByTitleOrTag(String q) {
+		return photoRepo.findByTitleContainingOrTagContaining(q, q);
 	}
 	
 //  Find Categories
@@ -54,19 +54,6 @@ public class PhotoService {
 		
 		for (Photo photo : photos) {
 			Hibernate.initialize(photo.getCategories());
-		}
-		
-		return photos;
-	}
-	
-// 	Find Tags
-	@Transactional
-	public List<Photo> findAllPhotosTags() {
-		
-		List<Photo> photos = photoRepo.findAll();
-		
-		for (Photo photo : photos) {
-			Hibernate.initialize(photo.getTags());
 		}
 		
 		return photos;

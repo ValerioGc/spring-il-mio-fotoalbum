@@ -14,9 +14,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
@@ -37,9 +39,15 @@ public class AdminPhotoAreaController {
 	
 //  Index foto ----------------------------------------------------------------
 	@GetMapping("/index")
-	public String indexPhotos(Model model) {
+	public String indexPhotos(Model model,  
+								@RequestParam(name = "query", required = false) 
+								String query) {
 		
-		List<Photo> photos = photoService.findAll();
+		List<Photo> photos = query == null ? 
+								photoService.findAll() : 
+								photoService.findByTitleOrTag(query);
+
+		
 		model.addAttribute("photos", photos);
 		model.addAttribute("routeName", "foto");
 		 
@@ -83,7 +91,10 @@ public class AdminPhotoAreaController {
 	}
 	//  Store
 	@PostMapping("/store")
-	public String storePhoto(@Valid Photo photo, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+	public String storePhoto(@Valid @ModelAttribute("photo")
+								Photo photo,
+								BindingResult bindingResult, 
+								RedirectAttributes redirectAttributes) {
 
 	// --------------------------------- Errors & Msg --------------------------------------	
 		
@@ -111,9 +122,8 @@ public class AdminPhotoAreaController {
 		List<Tag> tags = tagService.findAll();
 		model.addAttribute("tgs", tags);
 		
-		Optional<Photo> optPhoto = photoService.findPhotoById(id);
-		Photo photo = optPhoto.get();
-		model.addAttribute("obj", photo);
+		Photo optPhoto = photoService.findPhotoById(id).get();
+		model.addAttribute("obj", optPhoto);
 
 		model.addAttribute("routeName", "edit");
 		model.addAttribute("element", "photo");
@@ -124,7 +134,8 @@ public class AdminPhotoAreaController {
 	}
 	// Update 
 	@PostMapping("/update")
-	public String updatePhoto(@Valid Photo photo, 
+	public String updatePhoto(@Valid @ModelAttribute("photo") 
+								Photo photo, 
 								BindingResult bindingResult, 
 								RedirectAttributes redirectAttributes) {
 	

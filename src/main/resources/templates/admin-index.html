@@ -17,11 +17,22 @@
 		<th:block th:replace="fragments :: errorMsg(${errors})"	></th:block>
 		<th:block th:replace="fragments :: successMsg(${successMsg})"	></th:block>
 	
+	
+		<!-- Ricerca  -->
+		<div class="w-25 mx-auto my-4">
+			<form>
+				<label>Cerca una foto per nome e tag</label>
+				<input type="text" name="query" th:value="${query}">
+				
+				<input type="submit" class="btn btn-primary" value="Cerca">
+			</form>
+		</div>
+
+		
 		<!-- Main -->
 		<main class="container-fluid">
-			<div class="card w-25 m-auto p-4 my-5" th:each="photo : ${photos}" th:object="${photo}"> 
-				<!-- th:if="${photo.isVisible()}"> --> 
-				<ul class="list-unstyled">
+			<div class="card w-25 m-auto p-4 my-5" th:each="photo : ${photos}" th:object="${photo}" th:if="${!photos.isEmpty()}"> 
+				<ul class="list-unstyled" >
 					<li class=" text-center mt-1 mb-3 text-capitalize">
 						<span class="fw-bold">		
 							[[${photo.title}]]
@@ -62,9 +73,9 @@
 					</li>
 					<li class="my-3">
 						<hr>
-						<span class="fw-bold">Tags:</span>
-						<span th:each="tag : ${photo.getTags()}" th:object="${tag}">[[${tag.name}]], </span>
-						<span th:if="${photo.getTags().isEmpty()}">Nessun tag associato</span>
+						<span class="fw-bold">Tag:</span>
+						<span th:if="${photo.tag}">[[${photo.tag}]], </span>
+						<span th:if="!${photo.tag}">Nessun tag associato</span>
 					</li>
 				</ul>
 				<div class="text-center">
@@ -83,6 +94,8 @@
 						Elimina
 				   	</a>
 				</div>
+				
+				<h3 th:if="${photos.isEmpty()}">Nessuna foto trovata</h3>
 				
 				<script type="text/javascript" th:src="@{/js/main.js}"></script>
 			</div>

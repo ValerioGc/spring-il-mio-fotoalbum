@@ -35,17 +35,4 @@ public class TagService {
 	public void deleteTagById(int id) {
 		tagRepo.deleteById(id);
 	}
-	
-// Find photos
-	@Transactional
-	public List<Tag> findAllPhotos() {
-		
-		List<Tag> tags = tagRepo.findAll();
-		
-		for (Tag tag : tags) {
-			Hibernate.initialize(tag.getPhotos());
-		}
-		
-		return tags;
-	}
 }

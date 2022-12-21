@@ -55,9 +55,9 @@
 					</li>
 					<li class="my-3">
 						<hr>
-						<span class="fw-bold">Tags:</span>
-						<span th:each="tag : ${photo.getTags()}" th:object="${tag}">[[${tag.name}]], </span>
-						<span th:if="${photo.getTags().isEmpty()}">Nessun tag associato</span>
+						<span class="fw-bold">Tag:</span>
+						<span th:if="${photo.tag}">[[${photo.tag}]], </span>
+						<span th:if="!${photo.tag}">Nessun tag associato</span>
 					</li>
 				</ul>
 				<div class="text-center">			   

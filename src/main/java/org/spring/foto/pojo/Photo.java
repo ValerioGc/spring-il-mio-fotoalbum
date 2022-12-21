@@ -3,6 +3,8 @@ package org.spring.foto.pojo;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -10,8 +12,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
@@ -28,7 +33,9 @@ public class Photo {
 	@NotEmpty(message = "Il nome della foto non deve essere vuoto")
 	private String title;
 	
+	
 	@Column(nullable = true)
+	@Lob
 	private String description;
 	
 	
@@ -48,9 +55,11 @@ public class Photo {
 	@JsonIgnore
 	private List<Category> categories; 
 	
-	@ManyToMany
-	@JsonIgnore
-	private Set<Tag> tags; 
+//	@ManyToMany
+//	@JsonIgnore
+//	private Set<Tag> tags;
+	
+	private String tag;
 	
 	public Photo() { }
 	public Photo(String title, String description, String url, boolean visible) {
@@ -71,23 +80,24 @@ public class Photo {
 	}
 //  With tags
 	public Photo(String title, String description, String url, 
-			boolean visible, Set<Tag> tags) {
+			boolean visible, String tag) {
 		
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
 		setCategories(categories);
+		setTag(tag);
 	}
 //  With Categories and tags
 	public Photo(String title, String description, String url, 
-			boolean visible, List<Category> categories, Set<Tag> tags) {
+			boolean visible, List<Category> categories, String tag) {
 
 		setTitle(title);
 		setDescription(description);
 		setUrl(url);
 		setVisible(visible);
-		setTags(tags);
+		setTag(tag);
 	}
 	
 	
@@ -138,11 +148,18 @@ public class Photo {
 	}
 
 //  Tags
-	public Set<Tag> getTags() {
-		return tags;
+//	public Set<Tag> getTags() {
+//		return tags;
+//	}
+//	public void setTags(Set<Tag> tags) {
+//		this.tags = tags;
+//	}
+
+	public String getTag() {
+		return tag;
 	}
-	public void setTags(Set<Tag> tags) {
-		this.tags = tags;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 	// ------------------------------------------------- //
 

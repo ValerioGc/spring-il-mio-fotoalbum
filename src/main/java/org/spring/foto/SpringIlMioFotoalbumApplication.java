@@ -29,10 +29,7 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 
 	@Autowired
 	private CategoryService categoryService;
-	
-	@Autowired
-	private TagService tagService;
-	
+
 	@Autowired
 	private UserService userService;
 	
@@ -86,24 +83,24 @@ public class SpringIlMioFotoalbumApplication implements CommandLineRunner {
 		System.out.println(c3);
 
 	//  Tags
-		Tag t1 = new Tag("landscape");
-		Tag t2 = new Tag("nature");
-		Tag t3 = new Tag("mountains",  photosL1);
+//		Tag t1 = new Tag("landscape");
+//		Tag t2 = new Tag("nature");
+//		Tag t3 = new Tag("mountains",  photosL1);
 		
-		tagService.save(t1);
-		tagService.save(t2);
-		tagService.save(t3);
-
-		System.out.println(t1);
-		System.out.println(t2);
-		System.out.println(t3);
+//		tagService.save(t1);
+//		tagService.save(t2);
+////		tagService.save(t3);
+//
+//		System.out.println(t1);
+//		System.out.println(t2);
+////		System.out.println(t3);
+//		
+//		Set<Tag> tagsL1 = new HashSet<>(); 
+//		tagsL1.add(t1);
+//		tagsL1.add(t2);
+//		tagsL1.add(t3);
 		
-		Set<Tag> tagsL1 = new HashSet<>(); 
-		tagsL1.add(t1);
-		tagsL1.add(t2);
-		tagsL1.add(t3);
-		
-		Photo p5 = new Photo("foto-5", "description-5", "test-Url-5", true, categoryL1, tagsL1);
+		Photo p5 = new Photo("foto-5", "description-5", "test-Url-5", true, categoryL1, "tag1");
 		photoService.save(p5);
 		
 		System.out.println(p5);

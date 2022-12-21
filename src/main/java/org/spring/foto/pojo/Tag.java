@@ -27,9 +27,9 @@ public class Tag {
 	@NotEmpty(message = "Il nome del tag non deve essere vuoto")
 	private String name;
 	
-	@ManyToMany(mappedBy = "tags")
-	@JsonIgnore
-	private List<Photo> photos;
+//	@ManyToMany(mappedBy = "tag")
+//	@JsonIgnore
+//	private List<Photo> photos;
 
 	
 	public Tag() { }
@@ -38,7 +38,7 @@ public class Tag {
 	}
 	public Tag(String name, List<Photo> photos) {
 		setName(name);
-		setPhotos(photos);
+//		setPhotos(photos);
 	}
 
 	
@@ -56,16 +56,16 @@ public class Tag {
 	}
 
 //  Photos --------------------------------------
-	public List<Photo> getPhotos() {
-		return photos;
-	}
-	public void setPhotos(List<Photo> photos) {
-		this.photos = photos;
-	}
-	
+//	public List<Photo> getPhotos() {
+//		return photos;
+//	}
+//	public void setPhotos(List<Photo> photos) {
+//		this.photos = photos;
+//	}
+//	
 	@Override
 	public String toString() {
-		return "Nome tag: " + getName()
-				+ "Foto: " + getPhotos();
+		return "Nome tag: " + getName();
+//				+ "Foto: " + getPhotos();
 	}
 }
