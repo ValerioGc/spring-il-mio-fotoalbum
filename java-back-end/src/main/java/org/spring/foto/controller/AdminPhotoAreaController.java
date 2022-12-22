@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.spring.foto.pojo.Category;
 import org.spring.foto.pojo.Photo;
-import org.spring.foto.pojo.Tag;
 import org.spring.foto.service.CategoryService;
 import org.spring.foto.service.PhotoService;
 import org.spring.foto.service.TagService;
@@ -135,8 +134,7 @@ public class AdminPhotoAreaController {
 	}
 	// Update 
 	@PostMapping("/update")
-	public String updatePhoto(@Valid @ModelAttribute("photo") 
-								Photo photo, 
+	public String updatePhoto(@Valid @ModelAttribute("photo") Photo photo, 
 								BindingResult bindingResult, 
 								RedirectAttributes redirectAttributes) {
 	
@@ -151,15 +149,9 @@ public class AdminPhotoAreaController {
 		
 	// -------------------------------------------------------------------------------------	
 		
-		System.err.println("id photo: " + photo.getId());
-		System.err.println("cat photo: " + photo.getCategories());
-		
 		
 		Photo photoOl = photoService.findPhotoById(photo.getId()).get();
-		
-		System.err.println("id: " + photoOl.getId());
-		System.err.println("phtOl: " + photoOl.getCategories());
-		
+			
 		
 	//  Rimozione vecchi elementi
 		for (Category cat : photoOl.getCategories()) {

@@ -2,13 +2,12 @@ package org.spring.foto.service;
 
 import java.util.List;
 
-import org.hibernate.Hibernate;
+
 import org.spring.foto.pojo.Tag;
 import org.spring.foto.repo.TagRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class TagService {
