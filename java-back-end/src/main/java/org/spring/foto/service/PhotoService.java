@@ -1,5 +1,6 @@
 package org.spring.foto.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +26,21 @@ public class PhotoService {
 // Find
 	public List<Photo> findAll() {
 		return photoRepo.findAll();
+	}
+	
+//  Find only visible photos
+	public List<Photo> findAllVisible() {
+
+		List<Photo> filteredApiPhoto = new ArrayList<>(); 
+
+			for (Photo photo : photoRepo.findAll()) {
+			
+				if (photo.isVisible()) {
+					filteredApiPhoto.add(photo);					
+				}
+			}
+			
+		return filteredApiPhoto;
 	}
 	
 // Find by ID

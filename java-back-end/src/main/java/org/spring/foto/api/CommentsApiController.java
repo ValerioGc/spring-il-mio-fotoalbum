@@ -3,16 +3,12 @@ package org.spring.foto.api;
 import java.util.List;
 import java.util.Set;
 
-import org.pizzeria.crud.pojo.Pizza;
-import org.spring.foto.pojo.Category;
 import org.spring.foto.pojo.Comment;
 import org.spring.foto.pojo.Photo;
-import org.spring.foto.service.CategoryService;
 import org.spring.foto.service.CommentService;
 import org.spring.foto.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

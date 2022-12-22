@@ -25,22 +25,15 @@ public class ApiController {
 	@Autowired
 	private CategoryService categoryService;
 	
+	
 	@GetMapping("/index")
 	public List<Photo> getPhotos() {
-		
-		List<Photo> photoList = photoService.findAll();
-		
-		for (Photo photo : photoList) {
-			
-			if (!photo.isVisible()) {
-				
-//				photoList.remove(photo);
-			
-			}
-		}
 
-		return photoList;
+		return photoService.findAllVisible();
+		
 	}
+	
+	
 //  Photo Categories
 	@RequestMapping("/get/{id}") 
 	public List<Photo> getCategoriesPhoto(@PathVariable("id") int id) {
@@ -55,4 +48,16 @@ public class ApiController {
 
 		return photo;
 	}
+
+	
+//  Ricerca foto per tag e nome
+	@GetMapping("/search/{query}")
+	public List<Photo> searchPhotoByTitleOrTag(@PathVariable("query") String q) {
+		
+		List<Photo> photos = (q == null) ? 
+								photoService.findAll() : 
+								photoService.findByTitleOrTag(q);
+		
+		return photos;
+ 	}
 }

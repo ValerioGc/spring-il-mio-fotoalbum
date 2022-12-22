@@ -1,7 +1,17 @@
 <template>
 
-    <main class="container-fluid">
-        <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto" :class="(photo.visible)?'':'d-none'" >
+    <main class="container-fluid px-0">
+
+        <div class="w-100 text-center bg-secondary py-4">
+            <label for="userSrc" class="d-block fw-bold pb-3">Cerca foto:</label>
+            <input type="text" v-model="usSrc" name="userSrc" id="userSrc" 
+                    placeholder="Inserisci il nome o il tag" 
+                    class="form-control d-inline-block w-25 mx-auto p-1"
+                    style="vertical-align: middle;" />
+            <button type="submit" class="mx-3 btn btn-primary" @click="getSearchPhotos()">Cerca</button>
+        </div>
+
+        <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto" >
 
             <div class="d-flex justify-content-between align-items-center">
                 <h4 class="text-capitalize">{{photo.title}}</h4>
@@ -51,7 +61,6 @@
 
         </div>
     </main>    
-    
 </template>
 
 <script>
@@ -63,26 +72,47 @@
         data() {
             return {
                 apiUrl:"http://localhost:8080/api/1",
+            
+                // -------- Array foto -------------
                 photoArray: [],
-                usCom:"",
+                filteredSrcPhotos:[],
+                
+                // -------- Ricerca e commenti -------------
+                usSrc:"",
                 newCom: { photo: '', content: ''},
-                activePhotoId: -1
             }
         },
-        mounted() {
-            axios.get(this.apiUrl +"/photo/index")
-                .then(response => {
-                    this.photoArray = response.data;
-
-                    for (let i = 1; i <= response.data.length; i++) {
-                        this.getPhotoCategories(i);
-                    }
-                })
-                .catch(err => {
-                    console.log("errore: " + err);
-                });
-        },
+        mounted() { this.getAllPhoto(); /* this.getSearchPhotos();*/ },
         methods:{
+        //  Index foto
+            getAllPhoto() {
+                axios.get(this.apiUrl + "/photo/index")
+                    .then(response => {
+
+                        this.photoArray = response.data;
+
+                        for (let i = 1; i <= response.data.length; i++) {
+                            this.getPhotoCategories(i);
+                        }
+                    }) .catch(err => {
+                        console.log("errore: " + err);
+                    });
+            },
+        //  Ricerca foto
+            getSearchPhotos() {
+                if (this.usSrc.length <= 0)  {
+                    return this.getPhotos();
+                }
+                axios.get(this.apiUrl + '/photo/search/' + this.usSrc)
+                    .then(response => {
+
+                        this.filteredSrcPhotos = response.data;
+                    
+                    }) .catch(err => {
+                        console.log(err);
+                    });
+            },
+        //  Trova categorie foto
             getPhotoCategories(id) {
                 axios.get(this.apiUrl + "/categories/get/" + id)
                     .then(response => {
@@ -97,6 +127,7 @@
                         }
                     });
             },
+        //  Trova commenti foto
             getPhotoComments(id) {
                 axios.get(this.apiUrl + "/comments/get/" + id)
                     .then(response => {
@@ -111,7 +142,7 @@
                         }
                     });
             },
-            //  Trova Id foto
+        //  Trova Id foto
             getPhotoIndexById(id) {
                 for (let i = 0; i < this.photoArray.length; i++) {
                     const photo = this.photoArray[i];
@@ -122,14 +153,11 @@
                 }
                 return -1;
             },
-            //  Trova foto
+        //  Trova foto
             getPhotoById(id) {
                 return this.photoArray[this.getPhotoIndexById(id)];
             },
-            getASize(array) {
-                return array.length;
-            },
-            // Invia commenti
+        // Invia commenti
             sendComment(pId) {
                 if (this.usCom.trim() === '') { 
                     alert('Il commento è vuoto')
@@ -143,17 +171,13 @@
                         this.getPhotoComments(pId);
                         this.usCom = '';
                         console.log(response);
-                    })
-                    .catch(err => {
+                    }) .catch(err => {
                         console.log(err);
                     });
             }
-
-
         }
     }
+
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

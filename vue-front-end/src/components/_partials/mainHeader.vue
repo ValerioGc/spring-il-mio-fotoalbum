@@ -1,6 +1,6 @@
 
 <template>
-    <header class="mb-3 p-2 bg-dark">
+    <header class="p-2 bg-dark">
         <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand  text-light" href="#">Spring Foto</a>
