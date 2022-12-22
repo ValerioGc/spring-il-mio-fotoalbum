@@ -1,6 +1,7 @@
 package org.spring.foto.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.hibernate.Hibernate;
 import org.spring.foto.pojo.Category;
@@ -29,8 +30,8 @@ public class CategoryService {
 	}
 	
 //  Find by ID
-	public Category findCategoryById(int id) {
-		return categoryRepo.findById(id).get();
+	public Optional<Category> findCategoryById(int id) {
+		return categoryRepo.findById(id);
 	}
 	
 //  Delete

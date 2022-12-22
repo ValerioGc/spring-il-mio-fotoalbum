@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+
 
 @Table
 @Entity
@@ -40,6 +39,10 @@ public class Category {
 		setName(name);
 		setPhotos(photos);
 	}
+	public Category(String name, Photo photo) {
+		setName(name);
+		addPhoto(photo);
+	}
 
 	
 //  ID --------------------------------------
@@ -63,11 +66,26 @@ public class Category {
 		this.photos = photos;
 	}
 	
-	
+	public void addPhoto(Photo photo) {
+		
+		boolean finded = false;
+		
+		for (Photo pht : getPhotos()) {
+			
+			if (pht.getId() == photo.getId()) {
+				finded = true;				
+			}
+			
+		}
+
+		if(!finded) {			
+			getPhotos().add(photo);
+		}
+	}
 	
 	@Override
 	public String toString() {
-		return "Nome categoria: " + getName()
-				+ "Foto associate: " + getPhotos();
+		return "Nome categoria: " + getName();
+				//+ "Foto associate: " + getPhotos();
 	}
 }

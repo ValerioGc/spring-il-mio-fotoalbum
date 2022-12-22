@@ -2,7 +2,6 @@ package org.spring.foto.controller;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.spring.foto.pojo.Category;
 import org.spring.foto.pojo.Photo;
@@ -57,7 +56,7 @@ public class AdminCategoryAreaController {
 	@GetMapping("/show/{id}")
 	public String showCategories(@PathVariable("id") int id, Model model) {
 		
-		Category cat = categoryService.findCategoryById(id);
+		Category cat = categoryService.findCategoryById(id).get();
 		
 		model.addAttribute("category", cat);
 		
@@ -109,13 +108,13 @@ public class AdminCategoryAreaController {
 		return "redirect:/admin/category/index";
 	}
 	
-	
+
 	
 //  Modifica Categoria ------------------------------------------------------------
 	@GetMapping("/edit/{id}")
 	public String editCategory(@PathVariable("id") int id, Model model) {
 		
-		Category cat = categoryService.findCategoryById(id);
+		Category cat = categoryService.findCategoryById(id).get();
 		model.addAttribute("obj", cat);
 		
 		List<Photo> photos = photoService.findAll();
@@ -131,7 +130,7 @@ public class AdminCategoryAreaController {
 	
 	// Update -----------------
 	@PostMapping("/update")
-	public String updateCategory(@Valid @ModelAttribute("category") 
+	public String updateCategory(@Valid @ModelAttribute("category")
 								Category category, 
 								BindingResult bindingResult, 
 								RedirectAttributes redirectAttributes) {
@@ -147,6 +146,20 @@ public class AdminCategoryAreaController {
 		
 	// -------------------------------------------------------------------------------------	
 
+		Category catOl = categoryService.findCategoryById(category.getId()).get();
+		
+	//  Rimozione vecchi elementi
+		for (Photo photo : catOl.getPhotos()) {
+			
+			photo.getCategories().remove(catOl);
+		}
+		
+	//  Aggiunta vecchi elementi
+		for (Photo photo : category.getPhotos()) {
+			
+			photo.getCategories().add(category);
+		}
+
 		categoryService.save(category);
 		
 		return "redirect:/admin/category/index";
@@ -157,7 +170,7 @@ public class AdminCategoryAreaController {
 	@GetMapping("/delete/{id}")
 	public String deleteCategory(@PathVariable("id") int id) {
 		
-		Category cat = categoryService.findCategoryById(id);
+		Category cat = categoryService.findCategoryById(id).get();
 		
 		for (Photo photo : cat.getPhotos()) {
 			photo.removeCategory(cat);

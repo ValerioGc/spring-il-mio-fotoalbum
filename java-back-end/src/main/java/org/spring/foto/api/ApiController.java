@@ -39,7 +39,7 @@ public class ApiController {
 	@RequestMapping("/get/{id}") 
 	public List<Photo> getCategoriesPhoto(@PathVariable("id") int id) {
 		
-		Category cat = categoryService.findCategoryById(id);
+		Category cat = categoryService.findCategoryById(id).get();
 		
 		List<Photo> photo = cat.getPhotos();
 		

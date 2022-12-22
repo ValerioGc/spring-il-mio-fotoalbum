@@ -150,7 +150,30 @@ public class AdminPhotoAreaController {
 		redirectAttributes.addFlashAttribute("successMsg", "Modifica avvenuta con successo");
 		
 	// -------------------------------------------------------------------------------------	
+		
+		System.err.println("id photo: " + photo.getId());
+		System.err.println("cat photo: " + photo.getCategories());
+		
+		
+		Photo photoOl = photoService.findPhotoById(photo.getId()).get();
+		
+		System.err.println("id: " + photoOl.getId());
+		System.err.println("phtOl: " + photoOl.getCategories());
+		
+		
+	//  Rimozione vecchi elementi
+		for (Category cat : photoOl.getCategories()) {
+			
+			cat.getPhotos().remove(photoOl);
+		}
+		
+	//  Aggiunta vecchi elementi
+		for (Category cat : photo.getCategories()) {
+			
+			cat.getPhotos().add(photo);
+		}
 
+		
 		photoService.save(photo);
 		
 		return "redirect:/admin/photo/index";

@@ -47,7 +47,6 @@ public class Photo {
 	@NotNull(message = "Il nome dell'ingrediente non deve essere vuoto")
 	private boolean visible;
 	
-	
 	@ManyToMany
 	@JsonIgnore
 	private List<Category> categories; 
@@ -88,6 +87,18 @@ public class Photo {
 		setVisible(visible);
 		setCategories(categories);
 	}
+
+//  With category
+	public Photo(String title, String description, String url, 
+					boolean visible, Category category) {
+		
+		setTitle(title);
+		setDescription(description);
+		setUrl(url);
+		setVisible(visible);
+		addCategory(category);
+	}
+
 //  With tag
 	public Photo(String title, String description, String url, 
 			boolean visible, String tag) {
@@ -171,10 +182,25 @@ public class Photo {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+	public void addCategory(Category category) {
+		
+		boolean finded = false;
+		
+		for (Category c : getCategories()) {
+			
+			if (c.getId() == category.getId()) {
+				finded = true;				
+			}
+
+		}
+		
+		if(!finded) {
+			getCategories().add(category);			
+		}
+	}
 	public void removeCategory(Category category) {
 		getCategories().remove(category);
 	}
-
 
 //  Comments
 	public Set<Comment> getComments() {

@@ -65,7 +65,7 @@ public class PhotoService {
 		return photoRepo.findByTitleContainingOrTagContaining(q, q);
 	}
 	
-//  Find photo's	 relations
+//  Find all photo's relations
 	@Transactional
 	public List<Photo> findAllPhotoRelations() {
 		
