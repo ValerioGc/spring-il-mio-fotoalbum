@@ -54,10 +54,10 @@ public class ApiController {
 	@GetMapping("/search/{query}")
 	public List<Photo> searchPhotoByTitleOrTag(@PathVariable("query") String q) {
 		
-		List<Photo> photos = (q == null) ? 
+		List<Photo> photosSrc = ( (q.equals(null)) || (q.equals("empty.get-xz87w2-all")) ) ? 
 								photoService.findAll() : 
 								photoService.findByTitleOrTag(q);
 		
-		return photos;
+		return photosSrc;
  	}
 }

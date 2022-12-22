@@ -1,16 +1,19 @@
 <template>
-
     <main class="container-fluid px-0">
 
+    <!-- Barra ricerca Foto -->
         <div class="w-100 text-center bg-secondary py-4">
+
             <label for="userSrc" class="d-block fw-bold pb-3">Cerca foto:</label>
             <input type="text" v-model="usSrc" name="userSrc" id="userSrc" 
                     placeholder="Inserisci il nome o il tag" 
                     class="form-control d-inline-block w-25 mx-auto p-1"
                     style="vertical-align: middle;" />
-            <button type="submit" class="mx-3 btn btn-primary" @click="getSearchPhotos()">Cerca</button>
+
+            <button class="mx-3 btn btn-primary" @click="getSearchPhotos()">Cerca</button>
         </div>
 
+    <!-- Card Foto -->
         <div v-for="(photo, index) in photoArray" :key="index" class="card w-50 p-5 my-5 mx-auto" >
 
             <div class="d-flex justify-content-between align-items-center">
@@ -33,6 +36,7 @@
                 </span>
             </div>
             
+            <!-- Categorie -->
             <div class="category-section" v-if="photo.categories">
                 
                 <h4 class="py-3">Categorie:</h4>
@@ -41,10 +45,10 @@
                     <li v-for="(category, index) in photo.categories" :key="index">
                         {{ category.name }}
                     </li>
-                </ul>
-                
+                </ul>    
             </div>
-            
+
+            <!-- Commenti -->
             <div class="my-3" style="border: 2px solid black;border-radius:5px">
                 <h4 class="bg-secondary text-light p-3">Commenti:</h4>
                 <div v-if="photo.comments.length" class="px-4 py-2 comment-section">
@@ -63,6 +67,7 @@
     </main>    
 </template>
 
+
 <script>
 
     import axios from 'axios';
@@ -72,20 +77,21 @@
         data() {
             return {
                 apiUrl:"http://localhost:8080/api/1",
-            
+                leng:0,
                 // -------- Array foto -------------
                 photoArray: [],
-                filteredSrcPhotos:[],
                 
-                // -------- Ricerca e commenti -------------
+                // ------------- Ricerca -------------
                 usSrc:"",
+                // ------------- Commenti ------------
+                usCom:"",
                 newCom: { photo: '', content: ''},
             }
         },
-        mounted() { this.getAllPhoto(); /* this.getSearchPhotos();*/ },
+        mounted() { this.getSearchPhotos(); /*this.getAllPhoto();*/ },
         methods:{
         //  Index foto
-            getAllPhoto() {
+            /*getAllPhoto() {
                 axios.get(this.apiUrl + "/photo/index")
                     .then(response => {
 
@@ -97,17 +103,23 @@
                     }) .catch(err => {
                         console.log("errore: " + err);
                     });
-            },
+            },*/
         //  Ricerca foto
             getSearchPhotos() {
-                if (this.usSrc.length <= 0)  {
-                    return this.getPhotos();
-                }
-                axios.get(this.apiUrl + '/photo/search/' + this.usSrc)
-                    .then(response => {
 
-                        this.filteredSrcPhotos = response.data;
+                if( this.usSrc.trim().length <= 0 ) {
+                    this.usSrc = "empty.get-xz87w2-all";
+                }
+
+                axios.get(this.apiUrl + '/photo/search/' + this.usSrc)
+                .then(response => {
                     
+                    this.photoArray = response.data;
+
+                    if (this.usSrc == "empty.get-xz87w2-all") {
+                        this.usSrc = "";
+                    }
+                        
                     }) .catch(err => {
                         console.log(err);
                     });
@@ -159,25 +171,27 @@
             },
         // Invia commenti
             sendComment(pId) {
-                if (this.usCom.trim() === '') { 
+                if (this.usCom.trim().length <= 0) { 
                     alert('Il commento è vuoto')
-                    return;
-                }
-                this.newCom.photo = pId;
-                this.newCom.content = this.usCom;
+                    
+                } else {
 
-                axios.post(this.apiUrl + '/comments/store/' + pId, this.newCom)
+                    this.newCom.photo = pId;
+                    this.newCom.content = this.usCom;
+                    
+                    axios.post(this.apiUrl + '/comments/store/' + pId, this.newCom)
                     .then(response => {
                         this.getPhotoComments(pId);
-                        this.usCom = '';
                         console.log(response);
                     }) .catch(err => {
                         console.log(err);
                     });
+                }
             }
         }
     }
 
 </script>
+
 
 <style scoped lang="scss"></style>
