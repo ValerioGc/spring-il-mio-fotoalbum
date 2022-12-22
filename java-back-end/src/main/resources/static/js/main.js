@@ -1,6 +1,6 @@
 
-function deleteConfirmation() {
-  confirm("Vuoi davvero eliminare la foto?");
+function deleteConfirmation(el) {
+  confirm("Vuoi davvero eliminare la " + el + " ?");
 }
 
 function showOption() {

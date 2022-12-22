@@ -26,6 +26,7 @@ public class ApiController {
 	private CategoryService categoryService;
 	
 	
+//  Photo Index -------------------------------------------------------
 	@GetMapping("/index")
 	public List<Photo> getPhotos() {
 
@@ -34,7 +35,7 @@ public class ApiController {
 	}
 	
 	
-//  Photo Categories
+//  Photo Categories -------------------------------------------------------
 	@RequestMapping("/get/{id}") 
 	public List<Photo> getCategoriesPhoto(@PathVariable("id") int id) {
 		
@@ -50,7 +51,7 @@ public class ApiController {
 	}
 
 	
-//  Ricerca foto per tag e nome
+//  Ricerca foto per tag e nome ---------------------------------------------------
 	@GetMapping("/search/{query}")
 	public List<Photo> searchPhotoByTitleOrTag(@PathVariable("query") String q) {
 		

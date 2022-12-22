@@ -32,11 +32,15 @@
 					<li class="px-2">
 						<a href="/admin/category/index" th:class="${routeName.equals('categorie')}? 'active':''">Categorie</a>
 					</li>
+					<li class="px-2">
+						<a href="/admin/category/create" th:class="${routeName.equals('createCat')}? 'active':''">Crea una categoria</a>
+					</li>
 				</ul>
 			</nav>
 			
 			<!-- User Bar -->
-			<div class="col-2 text-center p-3 text-light bg-secondary" style="border-left:1px solid black">
+			<div class="col-2 text-center p-3 text-light bg-secondary" 
+					style="border-left:1px solid black">
 				<i class="fa-solid fa-user me-2"></i>
 				<span sec:authorize="isAuthenticated()">
 				

@@ -52,7 +52,7 @@ public class AdminPhotoAreaController {
 		model.addAttribute("photos", photos);
 		model.addAttribute("routeName", "foto");
 		 
-		return "admin-index";
+		return "CRUD-photo/admin-index";
 	}
 	
 	
@@ -67,7 +67,7 @@ public class AdminPhotoAreaController {
 		
 		model.addAttribute("routeName", "dettaglio foto");
 		 
-		return "admin-show";
+		return "CRUD-photo/admin-show";
 	}
 	
 	
@@ -80,15 +80,15 @@ public class AdminPhotoAreaController {
 		List<Category> categories = categoryService.findAll(); 
 		model.addAttribute("categories", categories);
 		
-		List<Tag> tags = tagService.findAll();
-		model.addAttribute("tgs", tags);
+//		List<Tag> tags = tagService.findAll();
+//		model.addAttribute("tgs", tags);
 
 		model.addAttribute("routeName", "create");
 		model.addAttribute("element", "photo");
 		model.addAttribute("type", "Crea");
 		model.addAttribute("action", "store");
 		
-		return "admin-edit_create";
+		return "CRUD-photo/admin-edit_create";
 	}
 	//  Store
 	@PostMapping("/store")
@@ -120,8 +120,8 @@ public class AdminPhotoAreaController {
 		List<Category> categories = categoryService.findAll(); 
 		model.addAttribute("categories", categories);
 		
-		List<Tag> tags = tagService.findAll();
-		model.addAttribute("tgs", tags);
+//		List<Tag> tags = tagService.findAll();
+//		model.addAttribute("tgs", tags);
 		
 		Photo optPhoto = photoService.findPhotoById(id).get();
 		model.addAttribute("obj", optPhoto);
@@ -131,7 +131,7 @@ public class AdminPhotoAreaController {
 		model.addAttribute("type", "Modifica");
 		model.addAttribute("action", "update");
 		
-		return "admin-edit_create";
+		return "CRUD-photo/admin-edit_create";
 	}
 	// Update 
 	@PostMapping("/update")
