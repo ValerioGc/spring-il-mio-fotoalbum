@@ -13,8 +13,10 @@ import jakarta.transaction.Transactional;
 @Service
 public class CategoryService {
 
+	
 	@Autowired
 	private CategoryRepo categoryRepo;
+	
 	
 //  Save
 	public void save(Category categories) {
@@ -35,6 +37,7 @@ public class CategoryService {
 	public void deleteCategory(Category category) {
 		categoryRepo.delete(category);
 	}
+
 //  Delete by ID
 	public void deleteCategoryById(int id) {
 		categoryRepo.deleteById(id);

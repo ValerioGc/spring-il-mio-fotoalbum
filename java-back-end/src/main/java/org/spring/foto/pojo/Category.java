@@ -24,7 +24,6 @@ public class Category {
 	private int id;
 	
 	@Column(nullable = false, unique = true)
-	@NotNull(message = "Il nome della categoria non deve essere vuoto")
 	@NotEmpty(message = "Il nome della categoria non deve essere vuoto")
 	private String name;
 	

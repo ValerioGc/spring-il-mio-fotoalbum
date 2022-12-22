@@ -28,7 +28,6 @@ public class Photo {
 	private int id;
 	
 	@Column(unique = true, nullable = false )
-	@NotNull(message = "Il nome della foto non deve essere vuoto")
 	@NotEmpty(message = "Il nome della foto non deve essere vuoto")
 	private String title;
 	
@@ -155,6 +154,15 @@ public class Photo {
 	}
 
 	
+//  Tag
+	public String getTag() {
+		return tag;
+	}
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+	
+	
 // ------------------ Relations ------------------ // 
 //  Categories 
 	public List<Category> getCategories() {
@@ -176,7 +184,6 @@ public class Photo {
 		this.comments = comments;
 	}
 
-	
 //  Tags
 //	public Set<Tag> getTags() {
 //		return tags;
@@ -187,15 +194,6 @@ public class Photo {
 	
 // ------------------------------------------------- //
 
-//  Tag
-	public String getTag() {
-		return tag;
-	}
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-	
-	
 	
 	@Override
 	public String toString() {

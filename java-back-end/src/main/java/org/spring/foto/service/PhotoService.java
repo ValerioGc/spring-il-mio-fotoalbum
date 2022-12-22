@@ -15,15 +15,17 @@ import jakarta.transaction.Transactional;
 @Service
 public class PhotoService {
 	
+	
 	@Autowired
 	private PhotoRepo photoRepo;
 	
-// Save
+	
+//  Save
 	public Photo save(Photo photo) {
 		return photoRepo.save(photo);
 	}
 		
-// Find
+//  Find
 	public List<Photo> findAll() {
 		return photoRepo.findAll();
 	}
@@ -43,21 +45,22 @@ public class PhotoService {
 		return filteredApiPhoto;
 	}
 	
-// Find by ID
+//  Find by ID
 	public Optional<Photo> findPhotoById(int id) {
 		return photoRepo.findById(id);
 	}
 	
-// Delete Photo
+//  Delete Photo
 	public void deletePhoto(Photo photo) {
 		photoRepo.delete(photo);
 	}
-// Delete by ID
+	
+//  Delete by ID
 	public void deletePhotoById(int id) {
 		photoRepo.deleteById(id);
 	}
 	
-// Find by Name or Tag
+//  Find by Name or Tag
 	public List<Photo> findByTitleOrTag(String q) {
 		return photoRepo.findByTitleContainingOrTagContaining(q, q);
 	}
