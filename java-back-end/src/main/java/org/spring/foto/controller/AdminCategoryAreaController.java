@@ -81,8 +81,8 @@ public class AdminCategoryAreaController {
 		model.addAttribute("routeName", "createCat");
 	
 		model.addAttribute("element", "category");
-		model.addAttribute("type", "Modifica");
-		model.addAttribute("action", "update");
+		model.addAttribute("type", "Crea");
+		model.addAttribute("action", "store");
 		
 		return "CRUD-category/admin-edit_create";
 	}
@@ -103,6 +103,7 @@ public class AdminCategoryAreaController {
 		
 		// -------------------------------------------------------------------------------------
 	
+		
 		categoryService.save(category);
 		
 		return "redirect:/admin/category/index";

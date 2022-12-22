@@ -11,16 +11,18 @@
 		
 		<main>		
 		
-			<form th:action="@{'/admin/' + ${element} + '/' + ${action} }"  method="POST"
+			<form th:action="@{'/admin/' + ${element} + '/' + ${action} }" 
+				  method="POST"
 				  th:object="${obj}" 
 				  class="card text-center w-50 mx-auto d-flex justify-content-between align-items-center my-5">
+				
+				<input type="number" name="id" th:field="*{id}" class="d-none">
 				
 				<h4 class="text-center pt-4"
 					th:text="${action.equals('update')}?'Modifica Categoria':'Crea Categoria'"></h4>
 				
 				<div class="w-100 p-4 d-flex justify-content-around align-items-center flex-row">
 					
-						<input type="number" name="id" th:field="*{id}" class="d-none">
 						
 						<div class="my-2">
 							<label class="d-block fw-bold pb-2">Nome categoria:</label>
@@ -33,16 +35,17 @@
 
 						
 						<!-- Checkbox photo -->
-						<div class="mt-3">
+						<div class="mt-3" th:if="${type.equals('update')}">
 							<label class="fw-bold pe-2 d-inline-block">Foto: </label>
 							<hr/>		
 							
 							<div class="d-flex align-items-center flex-wrap my-2">
 								
 								<span class="w-50 text-center text-capitalize" 
-									  th:each="photo : ${photos}" th:object="${photo}">	
+									  th:each="photo : ${photos}"
+									  th:object="${photo}">	
 							
-									<input type="checkbox" name="photos" 
+									<input type="checkbox" name="photo" 
 											th:value="*{id}" 
 											th:field="${obj.photos}" />
 										
@@ -53,7 +56,7 @@
 
 				</div>
 				
-				<button type="submit" class="btn btn-primary w-25 m-auto my-3" >[[${type}]]</button>
+				<button class="btn btn-primary w-25 m-auto my-3">[[${type}]]</button>
 			</form>
 		</main>
 	

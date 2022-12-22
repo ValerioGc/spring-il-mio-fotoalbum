@@ -32,14 +32,14 @@
 						</span>
 					</li>
 					
-					<li class="my-3">
+					<li class="my-3" th:if="${category.getPhotos().size()}">
 						<span class="fw-bold">Foto associate:</span>
 						<hr/>
 						<p th:each="photo : ${category.getPhotos()}" 
 								th:object="${photo}">
 							Id: [[*{id}]] | Nome: [[*{title}]],
-						</span>
-						<span th:if="${category.getPhotos().isEmpty()}">Nessuna foto associata</span>
+						</p>
+
 					</li>
 				</ul>
 				<div class="text-center">
