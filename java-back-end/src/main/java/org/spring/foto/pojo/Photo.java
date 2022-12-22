@@ -163,6 +163,9 @@ public class Photo {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
+	public void removeCategory(Category category) {
+		getCategories().remove(category);
+	}
 
 
 //  Comments

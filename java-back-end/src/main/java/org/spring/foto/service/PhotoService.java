@@ -48,7 +48,7 @@ public class PhotoService {
 		return photoRepo.findById(id);
 	}
 	
-// Delete Pizza
+// Delete Photo
 	public void deletePhoto(Photo photo) {
 		photoRepo.delete(photo);
 	}
@@ -62,7 +62,7 @@ public class PhotoService {
 		return photoRepo.findByTitleContainingOrTagContaining(q, q);
 	}
 	
-//  Find photo relations
+//  Find photo's	 relations
 	@Transactional
 	public List<Photo> findAllPhotoRelations() {
 		

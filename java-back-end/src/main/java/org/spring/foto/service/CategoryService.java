@@ -31,12 +31,16 @@ public class CategoryService {
 		return categoryRepo.findById(id).get();
 	}
 	
+//  Delete
+	public void deleteCategory(Category category) {
+		categoryRepo.delete(category);
+	}
 //  Delete by ID
 	public void deleteCategoryById(int id) {
 		categoryRepo.deleteById(id);
 	}
 	
-//  Find Photos
+//  Find Category's photo
 	@Transactional
 	public List<Category> findAllCategoryPhotos() {
 		

@@ -157,6 +157,12 @@ public class AdminCategoryAreaController {
 	@GetMapping("/delete/{id}")
 	public String deleteCategory(@PathVariable("id") int id) {
 		
+		Category cat = categoryService.findCategoryById(id);
+		
+		for (Photo photo : cat.getPhotos()) {
+			photo.removeCategory(cat);
+		}
+		
 		categoryService.deleteCategoryById(id);
 
 		return "redirect:/admin/category/index";
