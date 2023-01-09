@@ -1,8 +1,33 @@
 # spring-il-mio-foto-album
 
-> Reproduction of a Web app to manage, display and comment photos and images 
+> Reproduction of a webapp with an administrative area protected by authentication, made for manage photos made with Java and Spring. The front end, made with Vue CLI, is served by the Java application API and it displays the data and offer the option to comment the photo.
 
 <br/>
+
+## *_Front-End Setup Project_*
+
+<table align="center">
+  <tbody>
+    <tr>
+        <td>:arrow_forward: Project setup:</td>
+        <td><strong>npm install</strong></td>  
+    </tr>
+    <tr>
+        <td>:arrow_forward: Compiles and hot-reloads for development:</td>
+        <td><strong>npm run serve</strong></td>
+    </tr>      
+    <tr>
+        <td>:arrow_forward: Compiles and minifies for production:</td>
+        <td><strong>npm run build</strong></td>
+    </tr>
+    <tr>
+        <td>:arrow_forward: Lints and fixes files:</td>
+        <td><strong>npm run lint</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+
 <br/>
 
 ## *_Back-end development tools_*
@@ -83,3 +108,35 @@
     </tr>
   </tbody>
 </table>
+
+<br />
+
+
+
+## *_Previews:_*
+
+
+<div align="center">
+  
+### Back-End
+  
+  <img align="center" src="/previews/fotoalbum.gif" alt="Gif pizzeria" />
+  
+  <br/> &nbsp;
+  
+  <img align="center" src="/previews/fotoalbum-thumbs.png" alt="Thumbnails pizzeria" />
+ <div>
+   
+--------
+   
+<div align="center">
+  
+  ### Front-end
+  
+  <img align="center" src="/previews/front-fotoalbum.gif" alt="Thumbnails pizzeria" />
+  
+  <img align="center" src="/previews/front-fotoalbum-thumbs.png" alt="Thumbnails pizzeria" />
+ <div>
+   
+
+--------
