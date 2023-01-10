@@ -120,11 +120,11 @@
   
 ### Back-End
   
-  <img align="center" src="/previews/fotoalbum.gif" alt="Gif pizzeria" />
+  <img align="center" src="/previews/back-preview.gif" alt="Gif pizzeria" />
   
   <br/> &nbsp;
   
-  <img align="center" src="/previews/fotoalbum-thumbs.png" alt="Thumbnails pizzeria" />
+  <img align="center" src="/previews/4.png" alt="Thumbnails pizzeria" />
  <div>
    
 --------
@@ -133,9 +133,9 @@
   
   ### Front-end
   
-  <img align="center" src="/previews/front-fotoalbum.gif" alt="Thumbnails pizzeria" />
+  <img align="center" src="/previews/front-preview.gif" alt="Thumbnails pizzeria" />
   
-  <img align="center" src="/previews/front-fotoalbum-thumbs.png" alt="Thumbnails pizzeria" />
+  <img align="center" src="/previews/2.png" alt="Thumbnails pizzeria" />
  <div>
    
 
